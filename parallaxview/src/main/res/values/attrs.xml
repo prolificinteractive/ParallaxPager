@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <attr name="x_in" format="float"/>
+  <attr name="x_out" format="float"/>
+  <attr name="y_in" format="float"/>
+  <attr name="y_out" format="float"/>
+  <attr name="fade_in" format="boolean"/>
+  <attr name="fade_out" format="boolean"/>
+</resources>
