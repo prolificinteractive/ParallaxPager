@@ -81,7 +81,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 
   // attach attributes in tag
   private void addViewToParallaxViewList(View view) {
-    ParallaxViewTag tag = (ParallaxViewTag) view.getTag(ParallaxViewTag.TAG);
+    ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.TAG_ID);
     tag.position = mCurrentChild;
     mParallaxViewList.add(view);
   }
@@ -108,7 +108,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 
   private void applyParallaxEffects(View view, int position, float offsetPixels) {
 
-    ParallaxViewTag tag = (ParallaxViewTag) view.getTag(ParallaxViewTag.TAG);
+    ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.TAG_ID);
 
     if (position == tag.position - 1 || position == tag.position + (mChildCount-1)) {
 

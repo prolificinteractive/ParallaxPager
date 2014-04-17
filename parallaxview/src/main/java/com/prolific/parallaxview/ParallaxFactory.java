@@ -3,6 +3,7 @@ package com.prolific.parallaxview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -60,17 +61,19 @@ public class ParallaxFactory implements LayoutInflater.Factory {
 
     TypedArray a = context.obtainStyledAttributes(attrs, attrIds);
 
+    Log.d("mcl", "a.length(): " + a.length());
+
     ParallaxViewTag parallaxViewTag = new ParallaxViewTag();
 
-    parallaxViewTag.xIn = a.getFloat(R.attr.x_in, 0.0f);
-    parallaxViewTag.xOut = a.getFloat(R.attr.x_out, 0.0f);
-    parallaxViewTag.yIn = a.getFloat(R.attr.y_in, 0.0f);
-    parallaxViewTag.yOut = a.getFloat(R.attr.y_out, 0.0f);
-    parallaxViewTag.fadeIn = a.getBoolean(R.attr.fade_in, false);
-    parallaxViewTag.fadeOut = a.getBoolean(R.attr.fade_out, false);
+    parallaxViewTag.xIn = a.getFloat(0, 0.0f);
+    parallaxViewTag.xOut = a.getFloat(1, 0.0f);
+    parallaxViewTag.yIn = a.getFloat(2, 0.0f);
+    parallaxViewTag.yOut = a.getFloat(3, 0.0f);
+    parallaxViewTag.fadeIn = a.getBoolean(4, false);
+    parallaxViewTag.fadeOut = a.getBoolean(5, false);
 
     a.recycle();
 
-    view.setTag(ParallaxViewTag.TAG, parallaxViewTag);
+    view.setTag(R.id.TAG_ID, parallaxViewTag);
   }
 }
