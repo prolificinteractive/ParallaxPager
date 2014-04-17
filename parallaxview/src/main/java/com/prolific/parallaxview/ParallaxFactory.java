@@ -3,7 +3,6 @@ package com.prolific.parallaxview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 
@@ -60,8 +59,6 @@ public class ParallaxFactory implements LayoutInflater.Factory {
     int[] attrIds = {R.attr.x_in, R.attr.x_out, R.attr.y_in, R.attr.y_out, R.attr.fade_in, R.attr.fade_out};
 
     TypedArray a = context.obtainStyledAttributes(attrs, attrIds);
-
-    Log.d("mcl", "a.length(): " + a.length());
 
     ParallaxViewTag parallaxViewTag = new ParallaxViewTag();
 

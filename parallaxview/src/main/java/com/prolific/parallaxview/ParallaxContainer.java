@@ -51,6 +51,8 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     mScreenWidth = context.getResources().getDisplayMetrics().widthPixels;
 
     addChildrenToParallaxViewList();
+
+    addView(mViewPager);
   }
 
   // top-level children only
