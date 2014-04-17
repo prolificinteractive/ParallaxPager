@@ -8,7 +8,7 @@ public class ParallaxContextWrapper extends ContextWrapper {
 
   private LayoutInflater mInflater;
 
-  public ParallaxContextWrapper(Context base) { //, int xIn, int xOut, int yIn, int yOut, int fadeIn, int fadeOut) {
+  public ParallaxContextWrapper(Context base) {
     super(base);
   }
 

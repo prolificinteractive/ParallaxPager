@@ -56,21 +56,21 @@ public class ParallaxFactory implements LayoutInflater.Factory {
 
   protected void onViewCreated(View view, String name, Context context, AttributeSet attrs) {
 
-    int[] attrIds = {R.attrs.x_in, R.attrs.x_out, R.attrs.y_in, R.attrs.y_out, R.attrs.fade_in, R.attrs.fade_out};
+    int[] attrIds = {R.attr.x_in, R.attr.x_out, R.attr.y_in, R.attr.y_out, R.attr.fade_in, R.attr.fade_out};
 
     TypedArray a = context.obtainStyledAttributes(attrs, attrIds);
 
     ParallaxViewTag parallaxViewTag = new ParallaxViewTag();
 
-    parallaxViewTag.xIn = a.getFloat(R.attrs.x_in, 0.0f);
-    parallaxViewTag.xOut = a.getFloat(R.attrs.x_out, 0.0f);
-    parallaxViewTag.yIn = a.getFloat(R.attrs.y_in, 0.0f);
-    parallaxViewTag.yOut = a.getFloat(R.attrs.y_out, 0.0f);
-    parallaxViewTag.fadeIn = a.getBoolean(R.attrs.fade_in, false);
-    parallaxViewTag.fadeOut = a.getBoolean(R.attrs.fade_out, false);
+    parallaxViewTag.xIn = a.getFloat(0, 0.0f);
+    parallaxViewTag.xOut = a.getFloat(1, 0.0f);
+    parallaxViewTag.yIn = a.getFloat(2, 0.0f);
+    parallaxViewTag.yOut = a.getFloat(3, 0.0f);
+    parallaxViewTag.fadeIn = a.getBoolean(4, false);
+    parallaxViewTag.fadeOut = a.getBoolean(5, false);
 
     a.recycle();
 
-    view.setTag(ParallaxViewTag.TAG, parallaxViewTag);
+    view.setTag(R.id.TAG_ID, parallaxViewTag);
   }
 }
