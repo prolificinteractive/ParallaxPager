@@ -7,24 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 
 public class ParallaxFactory implements LayoutInflater.Factory {
-  //private static final String[] sClassPrefixList = {
-  //    "android.widget.",
-  //    "android.webkit."
-  //};
-  //private static final Map<Class<? extends TextView>, Integer> sStyles
-  //    = new HashMap<Class<? extends TextView>, Integer>() {
-  //  {
-  //    put(TextView.class, android.R.attr.textViewStyle);
-  //    put(Button.class, android.R.attr.buttonStyle);
-  //    put(EditText.class, android.R.attr.editTextStyle);
-  //    put(AutoCompleteTextView.class, android.R.attr.autoCompleteTextViewStyle);
-  //    put(MultiAutoCompleteTextView.class, android.R.attr.autoCompleteTextViewStyle);
-  //    put(CheckBox.class, android.R.attr.checkboxStyle);
-  //    put(RadioButton.class, android.R.attr.radioButtonStyle);
-  //    put(ToggleButton.class, android.R.attr.buttonStyleToggle);
-  //  }
-  //};
-
 
   private final LayoutInflater.Factory factory;
   private final int mXInAttributeId;
@@ -74,14 +56,6 @@ public class ParallaxFactory implements LayoutInflater.Factory {
       return createViewOrFailQuietly(name, null, context, attrs);
     }
 
-    //for (final String prefix : sClassPrefixList) {
-    //  final View view = createViewOrFailQuietly(name, prefix, context, attrs);
-    //
-    //  if (view != null) {
-    //    return view;
-    //  }
-    //}
-
     return null;
   }
 
@@ -101,12 +75,12 @@ public class ParallaxFactory implements LayoutInflater.Factory {
 
     ParallaxViewTag parallaxViewTag = new ParallaxViewTag();
 
-    parallaxViewTag.xIn = a.getFloat(android.R.styleable.x_in, 0.0f);
-    parallaxViewTag.xOut = a.getFloat(android.R.styleable.x_out, 0.0f);
-    parallaxViewTag.yIn = a.getFloat(android.R.styleable.y_in, 0.0f);
-    parallaxViewTag.yOut = a.getFloat(android.R.styleable.y_out, 0.0f);
-    parallaxViewTag.fadeIn = a.getBoolean(android.R.styleable.fade_in, false);
-    parallaxViewTag.fadeOut = a.getBoolean(android.R.styleable.fade_out, false);
+    parallaxViewTag.xIn = a.getFloat(R.styleable.x_in, 0.0f);
+    parallaxViewTag.xOut = a.getFloat(R.styleable.x_out, 0.0f);
+    parallaxViewTag.yIn = a.getFloat(R.styleable.y_in, 0.0f);
+    parallaxViewTag.yOut = a.getFloat(R.styleable.y_out, 0.0f);
+    parallaxViewTag.fadeIn = a.getBoolean(R.styleable.fade_in, false);
+    parallaxViewTag.fadeOut = a.getBoolean(R.styleable.fade_out, false);
 
     a.recycle();
 
