@@ -25,7 +25,6 @@ public class ParallaxActivity extends Activity {
         }
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         

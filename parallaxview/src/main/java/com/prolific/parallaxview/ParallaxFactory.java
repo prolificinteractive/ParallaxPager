@@ -9,23 +9,10 @@ import android.view.View;
 public class ParallaxFactory implements LayoutInflater.Factory {
 
   private final LayoutInflater.Factory factory;
-  private final int mXInAttributeId;
-  private final int mXOutAttributeId;
-  private final int mYInAttributeId;
-  private final int mYOutAttributeId;
-  private final int mFadeInAttributeId;
-  private final int mFadeOutAttributeId;
 
-  public ParallaxFactory(LayoutInflater.Factory factory, int xIn, int xOut,
-      int yIn, int yOut, int fadeIn, int fadeOut) {
+  public ParallaxFactory(LayoutInflater.Factory factory) {
 
     this.factory = factory;
-    mXInAttributeId = xIn;
-    mXOutAttributeId = xOut;
-    mYInAttributeId = yIn;
-    mYOutAttributeId = yOut;
-    mFadeInAttributeId = fadeIn;
-    mFadeOutAttributeId = fadeOut;
   }
 
   @Override
@@ -69,18 +56,18 @@ public class ParallaxFactory implements LayoutInflater.Factory {
 
   protected void onViewCreated(View view, String name, Context context, AttributeSet attrs) {
 
-    int[] attrIds = {mXInAttributeId, mXOutAttributeId, mYInAttributeId, mYOutAttributeId, mFadeInAttributeId, mFadeOutAttributeId};
+    int[] attrIds = {R.attrs.x_in, R.attrs.x_out, R.attrs.y_in, R.attrs.y_out, R.attrs.fade_in, R.attrs.fade_out};
 
     TypedArray a = context.obtainStyledAttributes(attrs, attrIds);
 
     ParallaxViewTag parallaxViewTag = new ParallaxViewTag();
 
-    parallaxViewTag.xIn = a.getFloat(R.attr.x_in, 0.0f);
-    parallaxViewTag.xOut = a.getFloat(R.attr.x_out, 0.0f);
-    parallaxViewTag.yIn = a.getFloat(R.attr.y_in, 0.0f);
-    parallaxViewTag.yOut = a.getFloat(R.attr.y_out, 0.0f);
-    parallaxViewTag.fadeIn = a.getBoolean(R.attr.fade_in, false);
-    parallaxViewTag.fadeOut = a.getBoolean(R.attr.fade_out, false);
+    parallaxViewTag.xIn = a.getFloat(R.attrs.x_in, 0.0f);
+    parallaxViewTag.xOut = a.getFloat(R.attrs.x_out, 0.0f);
+    parallaxViewTag.yIn = a.getFloat(R.attrs.y_in, 0.0f);
+    parallaxViewTag.yOut = a.getFloat(R.attrs.y_out, 0.0f);
+    parallaxViewTag.fadeIn = a.getBoolean(R.attrs.fade_in, false);
+    parallaxViewTag.fadeOut = a.getBoolean(R.attrs.fade_out, false);
 
     a.recycle();
 

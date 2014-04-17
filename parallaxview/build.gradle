@@ -6,12 +6,12 @@ android {
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 19
+        targetSdkVersion 18
         versionCode 1
         versionName "0.1"
     }
 }
 
 dependencies {
-  compile 'com.android.support:support-v4:19.0.1'
+  compile 'com.android.support:support-v4:19.1.0'
 }
