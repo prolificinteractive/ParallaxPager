@@ -75,12 +75,12 @@ public class ParallaxFactory implements LayoutInflater.Factory {
 
     ParallaxViewTag parallaxViewTag = new ParallaxViewTag();
 
-    parallaxViewTag.xIn = a.getFloat(R.styleable.x_in, 0.0f);
-    parallaxViewTag.xOut = a.getFloat(R.styleable.x_out, 0.0f);
-    parallaxViewTag.yIn = a.getFloat(R.styleable.y_in, 0.0f);
-    parallaxViewTag.yOut = a.getFloat(R.styleable.y_out, 0.0f);
-    parallaxViewTag.fadeIn = a.getBoolean(R.styleable.fade_in, false);
-    parallaxViewTag.fadeOut = a.getBoolean(R.styleable.fade_out, false);
+    parallaxViewTag.xIn = a.getFloat(R.attr.x_in, 0.0f);
+    parallaxViewTag.xOut = a.getFloat(R.attr.x_out, 0.0f);
+    parallaxViewTag.yIn = a.getFloat(R.attr.y_in, 0.0f);
+    parallaxViewTag.yOut = a.getFloat(R.attr.y_out, 0.0f);
+    parallaxViewTag.fadeIn = a.getBoolean(R.attr.fade_in, false);
+    parallaxViewTag.fadeOut = a.getBoolean(R.attr.fade_out, false);
 
     a.recycle();
 
