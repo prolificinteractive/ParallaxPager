@@ -20,7 +20,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   protected ViewPager mViewPager;
   protected SpaceFragment mSpaceFragment1;
   protected SpaceFragment mSpaceFragment2;
-  protected int mScreenWidth;
+  protected int mContainerWidth;
 
   public ParallaxContainer(Context context) {
     super(context);
@@ -38,13 +38,17 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   }
 
   @Override
+  public void onWindowFocusChanged (boolean hasFocus) {
+    mContainerWidth = getMeasuredWidth();
+    super.onWindowFocusChanged(hasFocus);
+  }
+
+  @Override
   protected void onFinishInflate() {
+    super.onFinishInflate();
 
     // how many steps before the viewpager loops
     mChildCount = getChildCount();
-
-    // how wide is the screen
-    mScreenWidth = mContext.getResources().getDisplayMetrics().widthPixels;
 
     addChildrenToParallaxViewList();
 
@@ -110,7 +114,6 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   }
 
   @Override public void onPageScrolled(int position, float offset, int offsetPixels) {
-
     if (mChildCount > 0) {
       position = position % mChildCount;
     }
@@ -135,21 +138,24 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 
     ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.TAG_ID);
 
-    if (position == tag.position - 1 || position == tag.position + (mChildCount-1)) {
+    if ((position == tag.position - 1
+        || position == tag.position + (mChildCount-1))
+           && mContainerWidth != 0) {
 
       // make visible
       view.setVisibility(VISIBLE);
 
       // slide in from right
-      view.setTranslationX((mScreenWidth - offsetPixels) * tag.xIn);
+      view.setTranslationX((mContainerWidth - offsetPixels) * tag.xIn);
 
       // slide in from top
-      view.setTranslationY(0 - (mScreenWidth - offsetPixels) * tag.yIn);
+      view.setTranslationY(0 - (mContainerWidth - offsetPixels) * tag.yIn);
 
       // fade in
       if (tag.fadeIn) {
-        view.setAlpha(1.0f - (mScreenWidth - offsetPixels) / mScreenWidth);
+        view.setAlpha(1.0f - (mContainerWidth - offsetPixels) / mContainerWidth);
       }
+
     } else if (position == tag.position) {
 
       // make visible
@@ -163,11 +169,10 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 
       // fade out
       if (tag.fadeOut) {
-        view.setAlpha(1.0f - offsetPixels / mScreenWidth);
+        view.setAlpha(1.0f - offsetPixels / mContainerWidth);
       }
-    } else {
 
-      // remove
+    } else {
       view.setVisibility(GONE);
     }
   }

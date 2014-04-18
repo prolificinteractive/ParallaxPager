@@ -22,15 +22,15 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:x_in="1.5"
-        app:x_out="1.5"
+        app:x_in="1.1"
+        app:x_out="1.1"
         android:text="Slow Text" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:x_in="5.1"
-        app:x_out="5.1"
+        app:x_in="15.1"
+        app:x_out="15.1"
         android:text="Fast Text" />
 
       </com.prolific.parallaxview.ParallaxContainer>
