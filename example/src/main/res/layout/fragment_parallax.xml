@@ -13,7 +13,7 @@
   <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:text="Static Text" />
+      android:text="Static Text"/>
 
   <com.prolific.parallaxview.ParallaxContainer
       android:layout_width="match_parent"
@@ -30,7 +30,7 @@
           android:layout_marginLeft="10dp"
           app:x_in="1.1"
           app:x_out="1.1"
-          android:text="Slow Text 1" />
+          android:text="Slow Text 1"/>
 
       <TextView
           android:layout_width="wrap_content"
@@ -38,7 +38,7 @@
           android:layout_marginLeft="10dp"
           app:x_in="15.1"
           app:x_out="15.1"
-          android:text="Fast Text 1" />
+          android:text="Fast Text 1"/>
 
     </LinearLayout>
 
@@ -53,7 +53,7 @@
           android:layout_marginLeft="10dp"
           app:x_in="15.1"
           app:x_out="15.1"
-          android:text="Fast Text 2" />
+          android:text="Fast Text 2"/>
 
       <TextView
           android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
           android:layout_marginLeft="10dp"
           app:x_in="1.1"
           app:x_out="1.1"
-          android:text="Slow Text 2" />
+          android:text="Slow Text 2"/>
 
     </LinearLayout>
   </com.prolific.parallaxview.ParallaxContainer>

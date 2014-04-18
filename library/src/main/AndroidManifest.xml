@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.prolific.parallaxview" >
+    package="com.prolific.parallaxview">
 
-    <application
-        android:allowBackup="true"
-        android:label="ParallaxView"
-        android:theme="@style/AppTheme" >
-    </application>
+  <application
+      android:allowBackup="true"
+      android:label="ParallaxView"
+      android:theme="@style/AppTheme">
+  </application>
 
 </manifest>

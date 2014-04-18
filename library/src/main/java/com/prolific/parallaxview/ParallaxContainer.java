@@ -38,7 +38,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   }
 
   @Override
-  public void onWindowFocusChanged (boolean hasFocus) {
+  public void onWindowFocusChanged(boolean hasFocus) {
     mContainerWidth = getMeasuredWidth();
     super.onWindowFocusChanged(hasFocus);
   }
@@ -54,7 +54,8 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 
     // make view pager with same attributes as container
     mViewPager = new ViewPager(mContext);
-    mViewPager.setLayoutParams(new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+    mViewPager.setLayoutParams(
+        new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
     mViewPager.setOnPageChangeListener(this);
     mViewPager.setId(R.id.PAGER_ID);
 
@@ -132,15 +133,16 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     }
   }
 
-  @Override public void onPageScrollStateChanged(int i) {}
+  @Override public void onPageScrollStateChanged(int i) {
+  }
 
   private void applyParallaxEffects(View view, int position, float offsetPixels) {
 
     ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.TAG_ID);
 
     if ((position == tag.position - 1
-        || position == tag.position + (mChildCount-1))
-           && mContainerWidth != 0) {
+        || position == tag.position + (mChildCount - 1))
+        && mContainerWidth != 0) {
 
       // make visible
       view.setVisibility(VISIBLE);
@@ -155,7 +157,6 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
       if (tag.fadeIn) {
         view.setAlpha(1.0f - (mContainerWidth - offsetPixels) / mContainerWidth);
       }
-
     } else if (position == tag.position) {
 
       // make visible
@@ -171,7 +172,6 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
       if (tag.fadeOut) {
         view.setAlpha(1.0f - offsetPixels / mContainerWidth);
       }
-
     } else {
       view.setVisibility(GONE);
     }

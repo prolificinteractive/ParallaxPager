@@ -58,7 +58,8 @@ public class ParallaxFactory implements LayoutInflater.Factory {
     return null;
   }
 
-  protected View createViewOrFailQuietly(String name, String prefix, Context context, AttributeSet attrs) {
+  protected View createViewOrFailQuietly(String name, String prefix, Context context,
+      AttributeSet attrs) {
     try {
       return LayoutInflater.from(context).createView(name, prefix, attrs);
     } catch (Exception ignore) {
@@ -68,7 +69,8 @@ public class ParallaxFactory implements LayoutInflater.Factory {
 
   protected void onViewCreated(View view, String name, Context context, AttributeSet attrs) {
 
-    int[] attrIds = {R.attr.x_in, R.attr.x_out, R.attr.y_in, R.attr.y_out, R.attr.fade_in, R.attr.fade_out};
+    int[] attrIds =
+        { R.attr.x_in, R.attr.x_out, R.attr.y_in, R.attr.y_out, R.attr.fade_in, R.attr.fade_out };
 
     TypedArray a = context.obtainStyledAttributes(attrs, attrIds);
 

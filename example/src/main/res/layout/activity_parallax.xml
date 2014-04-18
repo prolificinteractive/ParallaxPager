@@ -4,4 +4,4 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.prolific.parallaxproject.ParallaxActivity"
-    tools:ignore="MergeRootFrame" />
+    tools:ignore="MergeRootFrame"/>
