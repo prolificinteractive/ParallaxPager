@@ -54,7 +54,6 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     mViewPager.setOnPageChangeListener(this);
     mViewPager.setId(R.id.PAGER_ID);
 
-    addView(mViewPager);
 
     // two empty fragments
     mSpaceFragment1 = new SpaceFragment();
@@ -73,9 +72,11 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
             }
           });
     }
+
+
+    addView(mViewPager);
+    bringChildToFront(mViewPager);
   }
-
-
 
   // top-level children only
   private void addChildrenToParallaxViewList() {
