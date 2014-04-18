@@ -97,7 +97,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   private void addGrandChildrenToParallaxViewList(ViewGroup viewGroup) {
     int count = viewGroup.getChildCount();
     for (int i = 0; i < count; i++) {
-      View view = getChildAt(i);
+      View view = viewGroup.getChildAt(i);
       if (view instanceof ViewGroup) {
         addGrandChildrenToParallaxViewList((ViewGroup) view);
       } else {
