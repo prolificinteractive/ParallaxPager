@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/ParallaxProject.iml" filepath="$PROJECT_DIR$/ParallaxProject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/parallaxproject/parallaxproject.iml" filepath="$PROJECT_DIR$/parallaxproject/parallaxproject.iml" />
-      <module fileurl="file://$PROJECT_DIR$/parallaxview/parallaxview.iml" filepath="$PROJECT_DIR$/parallaxview/parallaxview.iml" />
-    </modules>
+    <modules />
   </component>
 </project>
 

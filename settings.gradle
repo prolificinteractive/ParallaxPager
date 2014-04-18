@@ -1,1 +1,1 @@
-include ':parallaxproject', ':parallaxview'
+include ':library', ':example'
