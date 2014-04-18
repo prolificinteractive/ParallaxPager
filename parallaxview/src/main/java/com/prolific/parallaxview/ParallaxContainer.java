@@ -54,7 +54,6 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     mViewPager.setOnPageChangeListener(this);
     mViewPager.setId(R.id.PAGER_ID);
 
-
     // two empty fragments
     mSpaceFragment1 = new SpaceFragment();
     mSpaceFragment2 = new SpaceFragment();
@@ -62,17 +61,16 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     // create an adapter that provides 7 blank fragments
     if (ParallaxUtil.mManager != null) {
       mViewPager.setAdapter(new FragmentPagerAdapter(ParallaxUtil.mManager) {
-            @Override public Fragment getItem(int i) {
-              // switch off which fragment is active, so the other one can be recycled
-              return i % 2 == 1 ? mSpaceFragment1 : mSpaceFragment2;
-            }
+        @Override public Fragment getItem(int i) {
+          // switch off which fragment is active, so the other one can be recycled
+          return i % 2 == 1 ? mSpaceFragment1 : mSpaceFragment2;
+        }
 
-            @Override public int getCount() {
-              return Integer.MAX_VALUE;
-            }
-          });
+        @Override public int getCount() {
+          return Integer.MAX_VALUE;
+        }
+      });
     }
-
 
     addView(mViewPager);
     bringChildToFront(mViewPager);
@@ -111,7 +109,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     mParallaxViewList.add(view);
   }
 
-  @Override public void onPageScrolled(int position, float offSet, int offsetPixels) {
+  @Override public void onPageScrolled(int position, float offset, int offsetPixels) {
 
     if (mChildCount > 0) {
       position = position % mChildCount;
@@ -140,37 +138,37 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     if (position == tag.position - 1 || position == tag.position + (mChildCount-1)) {
 
       // make visible
-      setVisibility(VISIBLE);
+      view.setVisibility(VISIBLE);
 
       // slide in from right
-      setTranslationX((mScreenWidth - offsetPixels) * tag.xIn);
+      view.setTranslationX((mScreenWidth - offsetPixels) * tag.xIn);
 
       // slide in from top
-      setTranslationY(0 - (mScreenWidth - offsetPixels) * tag.yIn);
+      view.setTranslationY(0 - (mScreenWidth - offsetPixels) * tag.yIn);
 
       // fade in
       if (tag.fadeIn) {
-        setAlpha(1.0f - (mScreenWidth - offsetPixels) / mScreenWidth);
+        view.setAlpha(1.0f - (mScreenWidth - offsetPixels) / mScreenWidth);
       }
     } else if (position == tag.position) {
 
       // make visible
-      setVisibility(VISIBLE);
+      view.setVisibility(VISIBLE);
 
       // slide out to left
-      setTranslationX(0 - offsetPixels * tag.xOut);
+      view.setTranslationX(0 - offsetPixels * tag.xOut);
 
       // slide out to top
-      setTranslationY(0 - offsetPixels * tag.yOut);
+      view.setTranslationY(0 - offsetPixels * tag.yOut);
 
       // fade out
       if (tag.fadeOut) {
-        setAlpha(1.0f - offsetPixels / mScreenWidth);
+        view.setAlpha(1.0f - offsetPixels / mScreenWidth);
       }
     } else {
 
       // remove
-      setVisibility(GONE);
+      view.setVisibility(GONE);
     }
   }
 }
