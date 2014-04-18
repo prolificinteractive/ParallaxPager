@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Space;
 import android.widget.TextView;
 
 public class ParallaxFactory implements LayoutInflater.Factory {
@@ -63,6 +64,9 @@ public class ParallaxFactory implements LayoutInflater.Factory {
       }
       else if (name.contains("TextView")) {
         name = TextView.class.getCanonicalName();
+      }
+      else if (name.contains("Space")) {
+        name = Space.class.getCanonicalName();
       }
       return LayoutInflater.from(context).createView(name, prefix, attrs);
     } catch (Exception ignore) {

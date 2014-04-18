@@ -1,17 +1,18 @@
 package com.prolific.parallaxproject;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import com.prolific.parallaxview.ParallaxContextWrapper;
+import com.prolific.parallaxview.ParallaxUtil;
 
-public class ParallaxActivity extends Activity {
+public class ParallaxActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,8 @@ public class ParallaxActivity extends Activity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+
+      ParallaxUtil.attachFragmentManager(getSupportFragmentManager());
     }
 
     @Override

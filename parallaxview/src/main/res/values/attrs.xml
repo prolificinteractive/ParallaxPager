@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
   <item type="id" name="TAG_ID"/>
+  <item type="id" name="PAGER_ID"/>
   <attr name="x_in" format="float"/>
   <attr name="x_out" format="float"/>
   <attr name="y_in" format="float"/>
