@@ -5,15 +5,15 @@ import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Space;
-import android.widget.TextView;
 
 public class ParallaxFactory implements LayoutInflater.Factory {
 
   private final LayoutInflater.Factory factory;
+
+  private static final String[] sClassPrefixList = {
+      "android.widget.",
+      "android.webkit."
+  };
 
   public ParallaxFactory(LayoutInflater.Factory factory) {
     this.factory = factory;
@@ -43,31 +43,23 @@ public class ParallaxFactory implements LayoutInflater.Factory {
   }
 
   protected View createViewOrFailQuietly(String name, Context context, AttributeSet attrs) {
-    //if (name.contains(".")) {
+    if (name.contains(".")) {
       return createViewOrFailQuietly(name, null, context, attrs);
-    //}
-    //return null;
+    }
+
+    for (final String prefix : sClassPrefixList) {
+      final View view = createViewOrFailQuietly(name, prefix, context, attrs);
+
+      if (view != null) {
+        return view;
+      }
+    }
+
+    return null;
   }
 
   protected View createViewOrFailQuietly(String name, String prefix, Context context, AttributeSet attrs) {
     try {
-
-      // FIXME: why in the world is this necessary for the action bar?
-      if (name.contains("FrameLayout")) {
-        name = FrameLayout.class.getCanonicalName();
-      }
-      else if (name.contains("LinearLayout")) {
-        name = LinearLayout.class.getCanonicalName();
-      }
-      else if (name.contains("ImageView")) {
-        name = ImageView.class.getCanonicalName();
-      }
-      else if (name.contains("TextView")) {
-        name = TextView.class.getCanonicalName();
-      }
-      else if (name.contains("Space")) {
-        name = Space.class.getCanonicalName();
-      }
       return LayoutInflater.from(context).createView(name, prefix, attrs);
     } catch (Exception ignore) {
       return null;
