@@ -90,7 +90,9 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 
   @Override public void onPageScrolled(int position, float offSet, int offsetPixels) {
 
-    position = position % mChildCount;
+    if (mChildCount > 0) {
+      position = position % mChildCount;
+    }
 
     for (View view : mParallaxViewList) {
       applyParallaxEffects(view, position, offsetPixels);
