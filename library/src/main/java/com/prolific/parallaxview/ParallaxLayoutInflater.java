@@ -5,11 +5,6 @@ import android.view.LayoutInflater;
 
 public class ParallaxLayoutInflater extends LayoutInflater {
 
-  protected ParallaxLayoutInflater(Context context) {
-    super(context);
-    setUpLayoutFactory();
-  }
-
   protected ParallaxLayoutInflater(LayoutInflater original, Context newContext) {
     super(original, newContext);
     setUpLayoutFactory();
@@ -17,7 +12,7 @@ public class ParallaxLayoutInflater extends LayoutInflater {
 
   private void setUpLayoutFactory() {
     if (!(getFactory() instanceof ParallaxFactory)) {
-      setFactory(new ParallaxFactory(getFactory()));
+      setFactory(new ParallaxFactory(this, getFactory()));
     }
   }
 

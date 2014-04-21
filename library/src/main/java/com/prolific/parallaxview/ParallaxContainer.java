@@ -2,9 +2,11 @@ package com.prolific.parallaxview;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -21,6 +23,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   protected SpaceFragment mSpaceFragment1;
   protected SpaceFragment mSpaceFragment2;
   protected int mContainerWidth;
+  protected static FragmentManager mManager;
 
   public ParallaxContainer(Context context) {
     super(context);
@@ -41,44 +44,6 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   public void onWindowFocusChanged(boolean hasFocus) {
     mContainerWidth = getMeasuredWidth();
     super.onWindowFocusChanged(hasFocus);
-  }
-
-  @Override
-  protected void onFinishInflate() {
-    super.onFinishInflate();
-
-    // how many steps before the viewpager loops
-    mChildCount = getChildCount();
-
-    addChildrenToParallaxViewList();
-
-    // make view pager with same attributes as container
-    mViewPager = new ViewPager(mContext);
-    mViewPager.setLayoutParams(
-        new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-    mViewPager.setOnPageChangeListener(this);
-    mViewPager.setId(R.id.PAGER_ID);
-
-    // two empty fragments
-    mSpaceFragment1 = new SpaceFragment();
-    mSpaceFragment2 = new SpaceFragment();
-
-    // create an adapter that provides 7 blank fragments
-    if (ParallaxUtil.mManager != null) {
-      mViewPager.setAdapter(new FragmentPagerAdapter(ParallaxUtil.mManager) {
-        @Override public Fragment getItem(int i) {
-          // switch off which fragment is active, so the other one can be recycled
-          return i % 2 == 1 ? mSpaceFragment1 : mSpaceFragment2;
-        }
-
-        @Override public int getCount() {
-          return Integer.MAX_VALUE;
-        }
-      });
-    }
-
-    addView(mViewPager);
-    bringChildToFront(mViewPager);
   }
 
   // top-level children only
@@ -110,6 +75,9 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   // attach attributes in tag
   private void addViewToParallaxViewList(View view) {
     ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.TAG_ID);
+    if (tag == null) {
+      tag = new ParallaxViewTag();
+    }
     tag.position = mCurrentChild;
     mParallaxViewList.add(view);
   }
@@ -139,6 +107,10 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   private void applyParallaxEffects(View view, int position, float offsetPixels) {
 
     ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.TAG_ID);
+
+    if (tag == null) {
+      return;
+    }
 
     if ((position == tag.position - 1
         || position == tag.position + (mChildCount - 1))
@@ -175,5 +147,51 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     } else {
       view.setVisibility(GONE);
     }
+  }
+
+  public void setupChildren(LayoutInflater inflater, int[] childIds) {
+
+    ParallaxLayoutInflater parallaxLayoutInflater = new ParallaxLayoutInflater(inflater, mContext);
+
+    for (int childId : childIds) {
+      parallaxLayoutInflater.inflate(childId, this);
+    }
+
+    // how many steps before the viewpager loops
+    mChildCount = getChildCount();
+
+    addChildrenToParallaxViewList();
+
+    // make view pager with same attributes as container
+    mViewPager = new ViewPager(mContext);
+    mViewPager.setLayoutParams(
+        new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+    mViewPager.setOnPageChangeListener(this);
+    mViewPager.setId(R.id.PAGER_ID);
+
+    // two empty fragments
+    mSpaceFragment1 = new SpaceFragment();
+    mSpaceFragment2 = new SpaceFragment();
+
+    // create an adapter that provides 7 blank fragments
+    if (mManager != null) {
+      mViewPager.setAdapter(new FragmentPagerAdapter(mManager) {
+        @Override public Fragment getItem(int i) {
+          // switch off which fragment is active, so the other one can be recycled
+          return i % 2 == 1 ? mSpaceFragment1 : mSpaceFragment2;
+        }
+
+        @Override public int getCount() {
+          return Integer.MAX_VALUE;
+        }
+      });
+    }
+
+    addView(mViewPager);
+    bringChildToFront(mViewPager);
+  }
+
+  public void attachManager(FragmentManager manager) {
+    mManager = manager;
   }
 }

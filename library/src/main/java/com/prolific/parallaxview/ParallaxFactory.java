@@ -9,13 +9,15 @@ import android.view.View;
 public class ParallaxFactory implements LayoutInflater.Factory {
 
   private final LayoutInflater.Factory factory;
+  private ParallaxLayoutInflater mInflater;
 
   private static final String[] sClassPrefixList = {
       "android.widget.",
       "android.webkit."
   };
 
-  public ParallaxFactory(LayoutInflater.Factory factory) {
+  public ParallaxFactory(ParallaxLayoutInflater inflater, LayoutInflater.Factory factory) {
+    mInflater = inflater;
     this.factory = factory;
   }
 
@@ -61,7 +63,7 @@ public class ParallaxFactory implements LayoutInflater.Factory {
   protected View createViewOrFailQuietly(String name, String prefix, Context context,
       AttributeSet attrs) {
     try {
-      return LayoutInflater.from(context).createView(name, prefix, attrs);
+      return mInflater.createView(name, prefix, attrs);
     } catch (Exception ignore) {
       return null;
     }
