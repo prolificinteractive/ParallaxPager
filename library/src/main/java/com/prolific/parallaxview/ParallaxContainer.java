@@ -92,17 +92,8 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     }
   }
 
-  @Override public void onPageSelected(int position) {
-    // recycle whichever fragment isn't active
-    if (position % 2 == 1) {
-      mSpaceFragment2 = new SpaceFragment();
-    } else {
-      mSpaceFragment1 = new SpaceFragment();
-    }
-  }
-
-  @Override public void onPageScrollStateChanged(int i) {
-  }
+  @Override public void onPageSelected(int position) {}
+  @Override public void onPageScrollStateChanged(int i) {}
 
   private void applyParallaxEffects(View view, int position, float offsetPixels) {
 
@@ -176,13 +167,17 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     // create an adapter that provides 7 blank fragments
     if (mManager != null) {
       mViewPager.setAdapter(new FragmentPagerAdapter(mManager) {
-        @Override public Fragment getItem(int i) {
+        @Override public Fragment getItem(int position) {
           // switch off which fragment is active, so the other one can be recycled
-          return i % 2 == 1 ? mSpaceFragment1 : mSpaceFragment2;
+          return position % 2 == 1 ? mSpaceFragment1 : mSpaceFragment2;
         }
 
         @Override public int getCount() {
           return Integer.MAX_VALUE;
+        }
+
+        @Override public long getItemId(int position) {
+          return position % 2;
         }
       });
     }
