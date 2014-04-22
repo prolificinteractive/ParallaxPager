@@ -5,6 +5,13 @@ Add some depth to your Android scrolling.
 
 ![](http://prolificinteractive.com/blog/wp-content/uploads/2014/04/parallax_demo.gif)
 
+Download
+========
+
+Download [the latest AAR](http://www.prolificinteractive.com) or grab the dependency in Gradle:
+
+>compile 'com.prolific:parallaxview:(insert latest version)'
+
 Installation
 ============
 
@@ -118,15 +125,8 @@ if (parallaxContainer != null) {
 }
 ```
 
-Download
---------
-
-Download [the latest AAR](http://www.prolificinteractive.com) or grab the dependency in Gradle:
-
->compile 'com.prolific:parallaxview:(insert latest version)'
-
 License
--------
+=======
 
 >Copyright 2014 Prolific Interactive
 >
