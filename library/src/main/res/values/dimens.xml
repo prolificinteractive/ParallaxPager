@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <item name="parallax_speed_slow" format="float" type="dimen">2.5</item>
+  <item name="parallax_speed_medium" format="float" type="dimen">5.0</item>
+  <item name="parallax_speed_fast" format="float" type="dimen">10.0</item>
+  <item name="parallax_speed_very_fast" format="float" type="dimen">20.0</item>
+
+  <item name="parallax_speed_slow_rev" format="float" type="dimen">-2.5</item>
+  <item name="parallax_speed_medium_rev" format="float" type="dimen">-5.0</item>
+  <item name="parallax_speed_fast_rev" format="float" type="dimen">-10.0</item>
+</resources>

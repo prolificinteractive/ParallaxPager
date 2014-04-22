@@ -9,16 +9,16 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginLeft="10dp"
-      app:x_in="1.1"
-      app:x_out="1.1"
+      app:x_in="@dimen/parallax_speed_slow"
+      app:x_out="@dimen/parallax_speed_slow"
       android:text="Slow Text 1"/>
 
   <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginLeft="10dp"
-      app:x_in="15.1"
-      app:x_out="15.1"
+      app:x_in="@dimen/parallax_speed_fast"
+      app:x_out="@dimen/parallax_speed_fast"
       android:text="Fast Text 1"/>
 
 </LinearLayout>
