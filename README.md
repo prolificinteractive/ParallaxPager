@@ -3,7 +3,7 @@ The Parallax View
 
 Add some depth to your Android scrolling.
 
-![](https://bitbucket.org/prolificinteractive/parallaxpager/src/efa2a6788ddedfc686cb73728d4eda46c3139c40/parallax_demo.gif)
+![](/prolificinteractive/parallaxpager/src/efa2a6788ddedfc686cb73728d4eda46c3139c40/parallax_demo.gif)
 
 Installation
 ============
