@@ -14,7 +14,7 @@ public class ParallaxActivity extends FragmentActivity {
     ParallaxContainer parallaxContainer = (ParallaxContainer) findViewById(R.id.parallax_container_1);
 
     int[] parallaxLayoutIds = {
-        R.layout.parallax_view_1, R.layout.parallax_view_2
+        R.layout.parallax_view_1, R.layout.parallax_view_2, R.layout.parallax_view_3
     };
 
     if (parallaxContainer != null) {

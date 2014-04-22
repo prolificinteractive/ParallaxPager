@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+  <TextView
+      android:id="@+id/crazy_text_1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerInParent="true"
+      android:background="@android:color/holo_orange_light"
+      app:x_in="5.7"
+      app:x_out="9.3"
+      app:y_in="-5.3"
+      app:y_out="8.5"
+      app:a_in="40.0"
+      app:a_out="24.0"
+      android:text="Crazy Fading Text 1"
+      />
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_toRightOf="@+id/crazy_text_1"
+      android:layout_above="@+id/crazy_text_1"
+      android:background="@android:color/holo_blue_light"
+      app:x_in="-5.7"
+      app:x_out="9.3"
+      app:y_in="5.3"
+      app:y_out="-8.5"
+      app:a_in="10.0"
+      app:a_out="10.0"
+      android:text="Crazy Fading Text 2"
+      />
+
+</RelativeLayout>

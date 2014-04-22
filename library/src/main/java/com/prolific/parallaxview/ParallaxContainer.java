@@ -43,6 +43,9 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
     mContainerWidth = getMeasuredWidth();
+    if (mViewPager != null) {
+      onPageScrolled(mViewPager.getCurrentItem(), 0, 0);
+    }
     super.onWindowFocusChanged(hasFocus);
   }
 
@@ -117,9 +120,8 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
       view.setTranslationY(0 - (mContainerWidth - offsetPixels) * tag.yIn);
 
       // fade in
-      if (tag.fadeIn) {
-        view.setAlpha(1.0f - (mContainerWidth - offsetPixels) / mContainerWidth);
-      }
+      view.setAlpha(1.0f - (mContainerWidth - offsetPixels) * tag.alphaIn / mContainerWidth);
+
     } else if (position == tag.position) {
 
       // make visible
@@ -132,9 +134,8 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
       view.setTranslationY(0 - offsetPixels * tag.yOut);
 
       // fade out
-      if (tag.fadeOut) {
-        view.setAlpha(1.0f - offsetPixels / mContainerWidth);
-      }
+      view.setAlpha(1.0f - offsetPixels * tag.alphaOut / mContainerWidth);
+
     } else {
       view.setVisibility(GONE);
     }

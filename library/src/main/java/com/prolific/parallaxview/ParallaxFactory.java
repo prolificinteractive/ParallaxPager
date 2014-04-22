@@ -38,7 +38,7 @@ public class ParallaxFactory implements LayoutInflater.Factory {
     }
 
     if (view != null) {
-      onViewCreated(view, name, context, attrs);
+      onViewCreated(view, context, attrs);
     }
 
     return view;
@@ -69,24 +69,26 @@ public class ParallaxFactory implements LayoutInflater.Factory {
     }
   }
 
-  protected void onViewCreated(View view, String name, Context context, AttributeSet attrs) {
+  protected void onViewCreated(View view, Context context, AttributeSet attrs) {
 
     int[] attrIds =
-        { R.attr.x_in, R.attr.x_out, R.attr.y_in, R.attr.y_out, R.attr.fade_in, R.attr.fade_out };
+        { R.attr.a_in, R.attr.a_out, R.attr.x_in, R.attr.x_out, R.attr.y_in, R.attr.y_out,  };
 
     TypedArray a = context.obtainStyledAttributes(attrs, attrIds);
 
     ParallaxViewTag parallaxViewTag = new ParallaxViewTag();
 
-    parallaxViewTag.xIn = a.getFloat(0, 0.0f);
-    parallaxViewTag.xOut = a.getFloat(1, 0.0f);
-    parallaxViewTag.yIn = a.getFloat(2, 0.0f);
-    parallaxViewTag.yOut = a.getFloat(3, 0.0f);
-    parallaxViewTag.fadeIn = a.getBoolean(4, false);
-    parallaxViewTag.fadeOut = a.getBoolean(5, false);
+    if (a != null) {
+      parallaxViewTag.alphaIn = a.getFloat(0, 0.0f);
+      parallaxViewTag.alphaOut = a.getFloat(1, 0.0f);
+      parallaxViewTag.xIn = a.getFloat(2, 0.0f);
+      parallaxViewTag.xOut = a.getFloat(3, 0.0f);
+      parallaxViewTag.yIn = a.getFloat(4, 0.0f);
+      parallaxViewTag.yOut = a.getFloat(5, 0.0f);
 
-    a.recycle();
+      a.recycle();
 
-    view.setTag(R.id.TAG_ID, parallaxViewTag);
+      view.setTag(R.id.TAG_ID, parallaxViewTag);
+    }
   }
 }

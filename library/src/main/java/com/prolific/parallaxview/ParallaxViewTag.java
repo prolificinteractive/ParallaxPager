@@ -6,6 +6,6 @@ public class ParallaxViewTag {
   protected float xOut;
   protected float yIn;
   protected float yOut;
-  protected boolean fadeIn;
-  protected boolean fadeOut;
+  protected float alphaIn;
+  protected float alphaOut;
 }
