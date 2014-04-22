@@ -23,11 +23,11 @@ Use the class `com.prolific.parallaxview.ParallaxContainer` in your layout XML, 
 
 Ex:
 
->```xml
-><com.prolific.parallaxview.ParallaxContainer
->      android:layout_width="match_parent"
->      android:layout_height="match_parent">
->```
+```xml
+<com.prolific.parallaxview.ParallaxContainer
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+```
 
 2. Create a layout XML file for each page
 -----------------------------------------
@@ -54,40 +54,40 @@ Assign any combination of the following attributes (all floats):
 
 Ex:
 
->```xml
-><?xml version="1.0" encoding="utf-8"?>
-><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
->    xmlns:app="http://schemas.android.com/apk/res-auto"
->    android:layout_width="match_parent"
->    android:layout_height="match_parent"
->    android:orientation="vertical">
->
->  <TextView
->      android:id="@+id/crazy_text_1"
->      android:layout_width="wrap_content"
->      android:layout_height="wrap_content"
->      app:x_in="@dimen/parallax_speed_medium"
->      app:x_out="@dimen/parallax_speed_fast"
->      app:y_in="@dimen/parallax_speed_medium_rev"
->      app:y_out="@dimen/parallax_speed_fast"
->      app:a_in="@dimen/parallax_speed_very_fast"
->      app:a_out="@dimen/parallax_speed_very_fast"
->      android:text="@string/text_1"
->      />
->
->  <TextView
->      android:layout_width="wrap_content"
->      android:layout_height="wrap_content"
->      app:x_in="@dimen/parallax_speed_medium_rev"
->      app:x_out="@dimen/parallax_speed_fast"
->      app:y_in="@dimen/parallax_speed_medium"
->      app:y_out="@dimen/parallax_speed_fast_rev"
->      app:a_in="@dimen/parallax_speed_very_fast"
->      app:a_out="@dimen/parallax_speed_very_fast"
->      android:text="@string/text_2"
->      />
-></LinearLayout>
->```
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+  <TextView
+      android:id="@+id/crazy_text_1"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:x_in="@dimen/parallax_speed_medium"
+      app:x_out="@dimen/parallax_speed_fast"
+      app:y_in="@dimen/parallax_speed_medium_rev"
+      app:y_out="@dimen/parallax_speed_fast"
+      app:a_in="@dimen/parallax_speed_very_fast"
+      app:a_out="@dimen/parallax_speed_very_fast"
+      android:text="@string/text_1"
+      />
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:x_in="@dimen/parallax_speed_medium_rev"
+      app:x_out="@dimen/parallax_speed_fast"
+      app:y_in="@dimen/parallax_speed_medium"
+      app:y_out="@dimen/parallax_speed_fast_rev"
+      app:a_in="@dimen/parallax_speed_very_fast"
+      app:a_out="@dimen/parallax_speed_very_fast"
+      android:text="@string/text_2"
+      />
+</LinearLayout>
+```
 
 Keep in mind that negative values mean a change in direction for translation effects, and have no effect for alpha. For translation effects, values between `0` and `1` will result in a high level of funkiness.
 
@@ -104,20 +104,20 @@ Important steps in `onCreate`:
 
 Ex:
 
->```java
->// find the parallax container
->ParallaxContainer parallaxContainer = (ParallaxContainer) findViewById(R.id.parallax_container_1);
->
->// list the layout for each page (in order)
->int[] parallaxLayoutIds = {
->    R.layout.parallax_view_1, R.layout.parallax_view_2, R.layout.parallax_view_3
->};
->
->// attach fragment manager, layout inflater, and children. specify whether pager will loop. 
->if (parallaxContainer != null) {
->  parallaxContainer.setupChildren(getSupportFragmentManager(), getLayoutInflater(), parallaxLayoutIds, true);
->}
->```
+```java
+// find the parallax container
+ParallaxContainer parallaxContainer = (ParallaxContainer) findViewById(R.id.parallax_container_1);
+
+// list the layout for each page (in order)
+int[] parallaxLayoutIds = {
+    R.layout.parallax_view_1, R.layout.parallax_view_2, R.layout.parallax_view_3
+};
+
+// attach fragment manager, layout inflater, and children. specify whether pager will loop. 
+if (parallaxContainer != null) {
+  parallaxContainer.setupChildren(getSupportFragmentManager(), getLayoutInflater(), parallaxLayoutIds, true);
+}
+```
 
 Download
 --------
