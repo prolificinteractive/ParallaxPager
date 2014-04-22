@@ -10,109 +10,115 @@ Installation
 
 There are 3 important steps:
 
-1. Wrap the Activity Context
+1. Use a `ParallaxContainer` in layout XML
 
-2. Attach the Fragment Manager
+2. Create a layout XML file for each page
 
-3. Include the `ParallaxContainer` in layout XML
+3. Add the attachment code to `onCreate` of your Activity
 
-1. Wrap the Activity Context
-----------------------------
+1. Use a `ParallaxContainer` in layout XML
+------------------------------------------
 
-Add this to the relevant Activity:
+Use the class `com.prolific.parallaxview.ParallaxContainer` in your layout XML, sizing it however you like.
 
->@Override
-protected void attachBaseContext(Context newBase) {
-    super.attachBaseContext(new CalligraphyContextWrapper(newBase));
-}
-
-2. Attach the FragmentManager
------------------------------
-
-In `onCreate` in the relevant Activity, add this line:
-
-> ParallaxUtil.attachFragmentManager(getSupportFragmentManager());
-
-3. Include the `ParallaxContainer` in layout XML
-------------------------------------------------
-
-In your layout XML, ensure this line is added to the Root Element:
-
-> xmlns:app="http://schemas.android.com/apk/res-auto"
-
-Then, add a View of type `com.prolific.parallaxview.ParallaxContainer`
-
-Within this container, put all the views that you wish to give parallax properties.
-
-*The container will consider each of its direct children to, in turn, hold all views necessary for a single page. If you want several views to be on the same page, they need to be all wrapped in a single view.*
+Ex:
 
 ><com.prolific.parallaxview.ParallaxContainer
 >      android:layout_width="match_parent"
 >      android:layout_height="match_parent">
+
+2. Create a layout XML file for each page
+-----------------------------------------
+
+Each page must have its own layout XML file. Use whichever Layouts or Views you like, as usual.
+
+Ensure this line is added to the Root Element:
+
+>xmlns:app="http://schemas.android.com/apk/res-auto"
+
+Assign any combination of the following attributes (all floats):
+
+* `x_in`: as the View **enters** the screen, it will translate in the horizontal direction along with user swiping, at a rate multiplied by this value. Default is `0`.
+
+* `x_out`: as the View **leaves** the screen, it will translate in the horizontal direction along with user swiping, at a rate multiplied by this value. Default is `0`.
+
+* `y_in`: as the View **enters** the screen, it will translate **downward** as the user swipes right to left, at a rate multiplied by this value. Default is `0`.
+
+* `y_out`: as the View **leaves** the screen, it will translate **upward** as the user swipes right to left, at a rate multiplied by this value. Default is `0`.
+
+* `a_in`: as the View **enters** the screen, it will **fade in** as the user swipes right to left, at a rate multiplied by this value. Default is `0`.
+
+* `a_out`: as the View **leaves** the screen, it will **fade out** as the user swipes right to left, at a rate multiplied by this value. Default is `0`.
+
+Ex:
+
+><?xml version="1.0" encoding="utf-8"?>
+><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+>    xmlns:app="http://schemas.android.com/apk/res-auto"
+>    android:layout_width="match_parent"
+>    android:layout_height="match_parent"
+>    android:orientation="vertical">
 >
->    <ViewForPage1>
->    	...
->    </ViewForPage1>
->    
->    <ViewForPage2>
->    	...
->    </ViewForPage2>
->    
->    ...
+>  <TextView
+>      android:id="@+id/crazy_text_1"
+>      android:layout_width="wrap_content"
+>      android:layout_height="wrap_content"
+>      app:x_in="@dimen/parallax_speed_medium"
+>      app:x_out="@dimen/parallax_speed_fast"
+>      app:y_in="@dimen/parallax_speed_medium_rev"
+>      app:y_out="@dimen/parallax_speed_fast"
+>      app:a_in="@dimen/parallax_speed_very_fast"
+>      app:a_out="@dimen/parallax_speed_very_fast"
+>      android:text="@string/text_1"
+>      />
 >
-></com.prolific.parallaxview.ParallaxContainer>
+>  <TextView
+>      android:layout_width="wrap_content"
+>      android:layout_height="wrap_content"
+>      app:x_in="@dimen/parallax_speed_medium_rev"
+>      app:x_out="@dimen/parallax_speed_fast"
+>      app:y_in="@dimen/parallax_speed_medium"
+>      app:y_out="@dimen/parallax_speed_fast_rev"
+>      app:a_in="@dimen/parallax_speed_very_fast"
+>      app:a_out="@dimen/parallax_speed_very_fast"
+>      android:text="@string/text_2"
+>      />
+></LinearLayout>
 
-Lastly, assign the parallax properties. Here are the current choices:
+Keep in mind that negative values mean a change in direction for translation effects, and have no effect for alpha. For translation effects, values between `0` and `1` will result in a high level of funkiness.
 
-`app:x_in`
+3. Add the attachment code to `onCreate` of your Activity
+---------------------------------------------------------
 
-`app:x_out`
+Important steps in `onCreate`:
 
-`app:y_in`
+* Find the parallax container by ID
 
-`app:y_out`
+* List the layouts for each page (in order)
 
-`app:fade_in`
+* Attach a **Fragment Manager** for the underlying `ViewPager`, a **Layout Inflater**, the list of children, and specify whether the pager should loop (`true` means it *will* loop).
 
-`app:fade_out`
+Ex:
 
-A boolean
-
-*Example:*
-
-<ViewForPage1>
-	android:layout_width="wrap_content"
-	android:layout_height="wrap_content"
-	app:x_in="2.5"
-	app:x_out="2.5"
-	app:y_in="1.25"
-	app:y_out="1.25"
-	app:fade_in="true"
-	app:fade_out="true"
-</ViewForPage1>
-
-See the sample project for another example of this.
+>// find the parallax container
+>ParallaxContainer parallaxContainer = (ParallaxContainer) findViewById(R.id.parallax_container_1);
+>
+>// list the layout for each page (in order)
+>int[] parallaxLayoutIds = {
+>    R.layout.parallax_view_1, R.layout.parallax_view_2, R.layout.parallax_view_3
+>};
+>
+>// attach fragment manager, layout inflater, and children. specify whether pager will loop. 
+>if (parallaxContainer != null) {
+>  parallaxContainer.setupChildren(getSupportFragmentManager(), getLayoutInflater(), parallaxLayoutIds, true);
+>}
 
 Download
 --------
 
-Download [the latest JAR](http://www.prolificinteractive.com) or grab the dependency in Gradle:
+Download [the latest AAR](http://www.prolificinteractive.com) or grab the dependency in Gradle:
 
 >compile 'com.prolific:parallaxview:(insert latest version)'
-
-Coming Soon
------------
-
-Working on:
-
-* an XML attribute to set the ViewPager to loop forever or to stop when the last page is reached.
-
-As Seen on TV
--------------
-
-Production apps currently using this in Google Play:
-
-[Automatic](https://play.google.com/store/apps/details?id=com.automatic)
 
 License
 -------

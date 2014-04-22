@@ -23,7 +23,6 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   protected SpaceFragment mSpaceFragment1;
   protected SpaceFragment mSpaceFragment2;
   protected int mContainerWidth;
-  protected static FragmentManager mManager;
 
   public ParallaxContainer(Context context) {
     super(context);
@@ -141,7 +140,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     }
   }
 
-  public void setupChildren(LayoutInflater inflater, int[] childIds) {
+  public void setupChildren (FragmentManager manager, LayoutInflater inflater, int[] childIds, final boolean shouldLoop) {
 
     ParallaxLayoutInflater parallaxLayoutInflater = new ParallaxLayoutInflater(inflater, mContext);
 
@@ -166,15 +165,15 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     mSpaceFragment2 = new SpaceFragment();
 
     // create an adapter that provides 7 blank fragments
-    if (mManager != null) {
-      mViewPager.setAdapter(new FragmentPagerAdapter(mManager) {
+    if (manager != null) {
+      mViewPager.setAdapter(new FragmentPagerAdapter(manager) {
         @Override public Fragment getItem(int position) {
           // switch off which fragment is active, so the other one can be recycled
           return position % 2 == 1 ? mSpaceFragment1 : mSpaceFragment2;
         }
 
         @Override public int getCount() {
-          return Integer.MAX_VALUE;
+          return shouldLoop ? Integer.MAX_VALUE : mChildCount;
         }
 
         @Override public long getItemId(int position) {
@@ -185,9 +184,5 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 
     addView(mViewPager);
     bringChildToFront(mViewPager);
-  }
-
-  public void attachManager(FragmentManager manager) {
-    mManager = manager;
   }
 }
