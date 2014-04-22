@@ -5,6 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:background="@android:color/holo_blue_light"
+      app:a_in="@dimen/parallax_speed_slow"
+      app:a_out="@dimen/parallax_speed_slow"/>
+
   <TextView
       android:id="@+id/crazy_text_1"
       android:layout_width="wrap_content"
@@ -25,7 +32,7 @@
       android:layout_height="wrap_content"
       android:layout_toRightOf="@+id/crazy_text_1"
       android:layout_above="@+id/crazy_text_1"
-      android:background="@android:color/holo_blue_light"
+      android:background="@android:color/white"
       app:x_in="@dimen/parallax_speed_medium_rev"
       app:x_out="@dimen/parallax_speed_fast"
       app:y_in="@dimen/parallax_speed_medium"

@@ -13,7 +13,8 @@ public class ParallaxFactory implements LayoutInflater.Factory {
 
   private static final String[] sClassPrefixList = {
       "android.widget.",
-      "android.webkit."
+      "android.webkit.",
+      "android.view."
   };
 
   public ParallaxFactory(ParallaxLayoutInflater inflater, LayoutInflater.Factory factory) {
