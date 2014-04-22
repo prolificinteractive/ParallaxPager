@@ -23,9 +23,11 @@ Use the class `com.prolific.parallaxview.ParallaxContainer` in your layout XML, 
 
 Ex:
 
+>```xml
 ><com.prolific.parallaxview.ParallaxContainer
 >      android:layout_width="match_parent"
 >      android:layout_height="match_parent">
+>```
 
 2. Create a layout XML file for each page
 -----------------------------------------
@@ -52,6 +54,7 @@ Assign any combination of the following attributes (all floats):
 
 Ex:
 
+>```xml
 ><?xml version="1.0" encoding="utf-8"?>
 ><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
 >    xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -84,6 +87,7 @@ Ex:
 >      android:text="@string/text_2"
 >      />
 ></LinearLayout>
+>```
 
 Keep in mind that negative values mean a change in direction for translation effects, and have no effect for alpha. For translation effects, values between `0` and `1` will result in a high level of funkiness.
 
@@ -100,6 +104,7 @@ Important steps in `onCreate`:
 
 Ex:
 
+>```java
 >// find the parallax container
 >ParallaxContainer parallaxContainer = (ParallaxContainer) findViewById(R.id.parallax_container_1);
 >
@@ -112,6 +117,7 @@ Ex:
 >if (parallaxContainer != null) {
 >  parallaxContainer.setupChildren(getSupportFragmentManager(), getLayoutInflater(), parallaxLayoutIds, true);
 >}
+>```
 
 Download
 --------
