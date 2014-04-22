@@ -3,7 +3,7 @@ The Parallax View
 
 Add some depth to your Android scrolling.
 
-![](http://prolificinteractive.com/blog/wp-content/uploads/2014/04/parallax_demo.gif)
+![](http://prolificinteractive.com/blog/wp-content/uploads/2014/04/parallax_demo-e1398194294746.gif)
 
 Installation
 ============
@@ -63,7 +63,6 @@ Ex:
     android:orientation="vertical">
 
   <TextView
-      android:id="@+id/crazy_text_1"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       app:x_in="@dimen/parallax_speed_medium"
