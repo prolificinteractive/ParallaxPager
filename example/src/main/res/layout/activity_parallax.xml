@@ -8,7 +8,7 @@
       android:layout_height="wrap_content"
       android:text="Static Text"/>
 
-  <com.prolific.parallaxview.ParallaxContainer
+  <com.prolific.parallaxpager.ParallaxContainer
       android:id="@+id/parallax_container_1"
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>

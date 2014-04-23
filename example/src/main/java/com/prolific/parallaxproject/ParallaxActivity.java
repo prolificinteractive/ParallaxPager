@@ -2,7 +2,7 @@ package com.prolific.parallaxproject;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import com.prolific.parallaxview.ParallaxContainer;
+import com.prolific.parallaxpager.ParallaxContainer;
 
 public class ParallaxActivity extends FragmentActivity {
 

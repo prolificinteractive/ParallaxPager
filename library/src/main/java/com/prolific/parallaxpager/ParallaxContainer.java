@@ -1,4 +1,4 @@
-package com.prolific.parallaxview;
+package com.prolific.parallaxpager;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;

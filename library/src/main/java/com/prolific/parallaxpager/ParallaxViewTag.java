@@ -1,4 +1,4 @@
-package com.prolific.parallaxview;
+package com.prolific.parallaxpager;
 
 public class ParallaxViewTag {
   protected int position;

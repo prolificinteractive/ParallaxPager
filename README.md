@@ -1,5 +1,5 @@
-The Parallax View
-=================
+The Parallax Pager
+==================
 
 Add some depth to your Android scrolling.
 
