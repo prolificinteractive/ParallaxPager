@@ -1,24 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal">
 
-  <TextView
+  <ImageView
       android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="10dp"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:layout_margin="@dimen/margin_size"
       app:x_in="@dimen/parallax_speed_slow"
       app:x_out="@dimen/parallax_speed_slow"
-      android:text="Slow Text 1"/>
+      app:a_in="@dimen/parallax_speed_fast"
+      app:a_out="@dimen/parallax_speed_fast"
+      android:src="@drawable/mercury"/>
+
+  <TextView
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_margin="@dimen/margin_size"
+      android:textSize="@dimen/text_size"
+      android:textColor="@android:color/white"
+      app:x_in="@dimen/parallax_speed_medium"
+      app:x_out="@dimen/parallax_speed_medium"
+      android:text="@string/mercury"/>
+
+  <ImageView
+      android:layout_width="wrap_content"
+      android:layout_height="0dp"
+      android:layout_weight="1"
+      android:layout_margin="@dimen/margin_size"
+      app:x_in="@dimen/parallax_speed_slow"
+      app:x_out="@dimen/parallax_speed_slow"
+      app:a_in="@dimen/parallax_speed_fast"
+      app:a_out="@dimen/parallax_speed_fast"
+      android:src="@drawable/venus"/>
 
   <TextView
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginLeft="10dp"
-      app:x_in="@dimen/parallax_speed_fast"
-      app:x_out="@dimen/parallax_speed_fast"
-      android:text="Fast Text 1"/>
+      android:textSize="@dimen/text_size"
+      android:textColor="@android:color/white"
+      app:x_in="@dimen/parallax_speed_fast_rev"
+      app:x_out="@dimen/parallax_speed_fast_rev"
+      app:y_out="@dimen/parallax_speed_slow_rev"
+      android:text="@string/venus"/>
 
 </LinearLayout>

@@ -16,7 +16,7 @@ public class ParallaxActivity extends FragmentActivity {
 
     // list the layout for each page (in order)
     int[] parallaxLayoutIds = {
-        R.layout.parallax_view_1, R.layout.parallax_view_2, R.layout.parallax_view_3
+        R.layout.parallax_view_1, R.layout.parallax_view_2, R.layout.parallax_view_3, R.layout.parallax_view_4
     };
 
     // attach fragment manager, layout inflater, and children. specify whether pager will loop.

@@ -13,9 +13,8 @@
       android:layout_margin="@dimen/margin_size"
       app:x_in="@dimen/parallax_speed_slow"
       app:x_out="@dimen/parallax_speed_slow"
-      app:a_in="@dimen/parallax_speed_fast"
-      app:a_out="@dimen/parallax_speed_fast"
-      android:src="@drawable/jupiter"/>
+      app:a_in="@dimen/parallax_speed_slow"
+      android:src="@drawable/uranus"/>
 
   <TextView
       android:layout_width="wrap_content"
@@ -23,9 +22,11 @@
       android:layout_margin="@dimen/margin_size"
       android:textSize="@dimen/text_size"
       android:textColor="@android:color/white"
-      app:x_in="@dimen/parallax_speed_medium"
+      app:x_in="@dimen/parallax_speed_medium_rev"
       app:x_out="@dimen/parallax_speed_medium"
-      android:text="@string/jupiter"/>
+      app:y_in="@dimen/parallax_speed_medium"
+      app:y_out="@dimen/parallax_speed_medium"
+      android:text="@string/uranus"/>
 
   <ImageView
       android:layout_width="wrap_content"
@@ -34,10 +35,8 @@
       android:layout_margin="@dimen/margin_size"
       app:x_in="@dimen/parallax_speed_slow"
       app:x_out="@dimen/parallax_speed_slow"
-      app:y_in="@dimen/parallax_speed_fast_rev"
-      app:a_in="@dimen/parallax_speed_fast"
-      app:a_out="@dimen/parallax_speed_fast"
-      android:src="@drawable/saturn"/>
+      app:a_out="@dimen/parallax_speed_medium"
+      android:src="@drawable/neptune"/>
 
   <TextView
       android:layout_width="wrap_content"
@@ -46,7 +45,9 @@
       android:textSize="@dimen/text_size"
       android:textColor="@android:color/white"
       app:x_in="@dimen/parallax_speed_fast"
-      app:x_out="@dimen/parallax_speed_fast"
-      android:text="@string/saturn"/>
+      app:x_out="@dimen/parallax_speed_fast_rev"
+      app:y_in="@dimen/parallax_speed_medium_rev"
+      app:y_out="@dimen/parallax_speed_medium_rev"
+      android:text="@string/neptune"/>
 
 </LinearLayout>
