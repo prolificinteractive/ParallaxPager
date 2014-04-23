@@ -23,6 +23,8 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   protected SpaceFragment mSpaceFragment1;
   protected SpaceFragment mSpaceFragment2;
   protected int mContainerWidth;
+  private FragmentManager mManager;
+  private boolean mShouldLoop = false;
 
   public ParallaxContainer(Context context) {
     super(context);
@@ -140,7 +142,16 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     }
   }
 
-  public void setupChildren (FragmentManager manager, LayoutInflater inflater, int[] childIds, final boolean shouldLoop) {
+  // TODO: remove in future versions
+  public void setFragmentManager (FragmentManager manager) {
+    mManager = manager;
+  }
+
+  public void setLooping (boolean shouldLoop) {
+    mShouldLoop = shouldLoop;
+  }
+
+  public void setupChildren (LayoutInflater inflater, int[] childIds) {
 
     ParallaxLayoutInflater parallaxLayoutInflater = new ParallaxLayoutInflater(inflater, mContext);
 
@@ -165,15 +176,15 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     mSpaceFragment2 = new SpaceFragment();
 
     // create an adapter that provides 7 blank fragments
-    if (manager != null) {
-      mViewPager.setAdapter(new FragmentPagerAdapter(manager) {
+    if (mManager != null) {
+      mViewPager.setAdapter(new FragmentPagerAdapter(mManager) {
         @Override public Fragment getItem(int position) {
           // switch off which fragment is active, so the other one can be recycled
           return position % 2 == 1 ? mSpaceFragment1 : mSpaceFragment2;
         }
 
         @Override public int getCount() {
-          return shouldLoop ? Integer.MAX_VALUE : mChildCount;
+          return mShouldLoop ? Integer.MAX_VALUE : mChildCount;
         }
 
         @Override public long getItemId(int position) {

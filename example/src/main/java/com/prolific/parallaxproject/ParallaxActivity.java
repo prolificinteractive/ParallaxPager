@@ -19,9 +19,16 @@ public class ParallaxActivity extends FragmentActivity {
         R.layout.parallax_view_1, R.layout.parallax_view_2, R.layout.parallax_view_3, R.layout.parallax_view_4
     };
 
-    // attach fragment manager, layout inflater, and children. specify whether pager will loop.
     if (parallaxContainer != null) {
-      parallaxContainer.setupChildren(getSupportFragmentManager(), getLayoutInflater(), parallaxLayoutIds, true);
+
+      // attach fragment manager (a future release will remove this requirement)
+      parallaxContainer.setFragmentManager(getSupportFragmentManager());
+
+      // specify whether pager will loop
+      parallaxContainer.setLooping(true);
+
+      // wrap the inflater and inflate children with custom attributes
+      parallaxContainer.setupChildren(getLayoutInflater(), parallaxLayoutIds);
     }
   }
 }

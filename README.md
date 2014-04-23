@@ -5,13 +5,6 @@ Add some depth to your Android scrolling.
 
 ![](http://prolificinteractive.com/blog/wp-content/uploads/2014/04/parallax_planet_demo.gif)
 
-Download
-========
-
-Download [the latest AAR](http://www.prolificinteractive.com) or grab the dependency in Gradle:
-
->compile 'com.prolific:parallaxview:(insert latest version)'
-
 Installation
 ============
 
@@ -32,6 +25,7 @@ Ex:
 
 ```xml
 <com.prolific.parallaxview.ParallaxContainer
+      android:id="@+id/parallax_container_1"
       android:layout_width="match_parent"
       android:layout_height="match_parent">
 ```
@@ -106,7 +100,11 @@ Important steps in `onCreate`:
 
 * List the layouts for each page (in order)
 
-* Attach a **Fragment Manager** for the underlying `ViewPager`, a **Layout Inflater**, the list of children, and specify whether the pager should loop (`true` means it *will* loop).
+* Attach a **Fragment Manager** for the underlying `ViewPager` (a future release will remove this requirement)
+
+* Specify whether the pager should loop (`true` means it *will* loop)
+
+* Submit a **Layout Inflater** and the list of child layouts.
 
 Ex:
 
@@ -116,12 +114,22 @@ ParallaxContainer parallaxContainer = (ParallaxContainer) findViewById(R.id.para
 
 // list the layout for each page (in order)
 int[] parallaxLayoutIds = {
-    R.layout.parallax_view_1, R.layout.parallax_view_2, R.layout.parallax_view_3
+    R.layout.parallax_view_1,
+    R.layout.parallax_view_2,
+    R.layout.parallax_view_3
 };
 
 // attach fragment manager, layout inflater, and children. specify whether pager will loop. 
 if (parallaxContainer != null) {
-  parallaxContainer.setupChildren(getSupportFragmentManager(), getLayoutInflater(), parallaxLayoutIds, true);
+
+  // attach fragment manager (a future release will remove this requirement)
+  parallaxContainer.setFragmentManager(getSupportFragmentManager());
+
+  // specify whether pager will loop
+  parallaxContainer.setLooping(true);
+
+  // wrap the inflater and inflate children with custom attributes
+  parallaxContainer.setupChildren(getLayoutInflater(), parallaxLayoutIds);
 }
 ```
 
@@ -141,8 +149,3 @@ License
 >WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 >See the License for the specific language governing permissions and
 >limitations under the License.
-
-Questions?
-==========
-
-For questions/feedback on this library, visit [the Prolific blog](http://www.prolificinteractive.com)
