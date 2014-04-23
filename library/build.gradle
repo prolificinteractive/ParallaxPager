@@ -1,17 +1,99 @@
 apply plugin: 'android-library'
+apply plugin: 'maven'
+apply plugin: 'signing'
+
+sonatypeUsername = project.hasProperty('sonatypeUsername') ? sonatypeUsername : ""
+sonatypePassword = project.hasProperty('sonatypePassword') ? sonatypePassword : ""
 
 android {
   compileSdkVersion 19
   buildToolsVersion "19.0.3"
 
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_7
+    targetCompatibility JavaVersion.VERSION_1_7
+  }
+
   defaultConfig {
     minSdkVersion 14
     targetSdkVersion 19
     versionCode 1
-    versionName "0.9"
+    versionName "0.7-SNAPSHOT"
   }
+}
+
+task androidJavadocs(type: Javadoc) {
+  source = android.sourceSets.main.allJava
+}
+
+task androidJavadocsJar(type: Jar) {
+  classifier = 'javadoc'
+  //basename = artifact_id
+  from androidJavadocs.destinationDir
+}
+
+task androidSourcesJar(type: Jar) {
+  classifier = 'sources'
+  //basename = artifact_id
+  from android.sourceSets.main.allSource
+}
+
+artifacts {
+  archives androidSourcesJar
+  archives androidJavadocsJar
+}
+
+signing {
+  required { has("release") && gradle.taskGraph.hasTask("uploadArchives") }
+  sign configurations.archives
 }
 
 dependencies {
   compile 'com.android.support:support-v4:19.1.+'
+}
+
+uploadArchives {
+  repositories.mavenDeployer {
+    beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
+
+    repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
+      authentication(userName: sonatypeUsername, password: sonatypePassword)
+    }
+
+    snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
+      authentication(userName: sonatypeUsername, password: sonatypePassword)
+    }
+
+    pom {
+      project {
+        name 'ParallaxPager'
+        packaging 'aar'
+
+        description 'Add some depth to your Android scrolling.'
+        url 'https://github.com/prolificinteractive/ParallaxPager'
+
+        scm {
+          url 'scm:git@github.com:prolificinteractive/ParallaxPager.git'
+          connection 'scm:git@github.com:prolificinteractive/ParallaxPager.git'
+          developerConnection 'scm:git@github.com:prolificinteractive/ParallaxPager.git'
+        }
+
+        licenses {
+          license {
+            name 'The Apache Software License, Version 2.0'
+            url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+            distribution 'repo'
+          }
+        }
+
+        developers {
+          developer {
+            id 'prolificinteractive'
+            name 'Prolific Interactive'
+            email 'android@prolificinteractive.com'
+          }
+        }
+      }
+    }
+  }
 }
