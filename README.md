@@ -3,7 +3,7 @@ The Parallax Pager
 
 Add some depth to your Android scrolling.
 
-![](http://prolificinteractive.com/blog/wp-content/uploads/2014/04/parallax_demo.gif)
+![](http://prolificinteractive.com/blog/wp-content/uploads/2014/04/parallax_planet_demo.gif)
 
 Download
 ========
