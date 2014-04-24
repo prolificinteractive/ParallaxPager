@@ -28,7 +28,7 @@ There are 3 important steps:
 1. Use a `ParallaxContainer` in layout XML
 ------------------------------------------
 
-Use the class `com.prolific.parallaxview.ParallaxContainer` in your layout XML, sizing it however you like.
+Use the class `com.prolificinteractive.parallaxpager.ParallaxContainer` in your layout XML, sizing it however you like.
 
 Ex:
 
