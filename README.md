@@ -107,7 +107,7 @@ Important steps in `onCreate`:
 
 * Find the parallax container by ID
 
-* List the layouts for each page (in order)
+* List the layouts for each page (in order). Currently there must be at least 2 in this list.
 
 * Attach a **Fragment Manager** for the underlying `ViewPager` (a future release will remove this requirement)
 
