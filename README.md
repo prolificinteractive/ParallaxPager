@@ -10,9 +10,9 @@ Download
 
 Use Gradle to grab the dependency from Maven Central:
 
->dependencies {
->  compile 'com.prolificinteractive:parallaxpager:0.7'
->}
+```groovy
+compile 'com.prolificinteractive:parallaxpager:0.7'
+```
 
 Installation
 ============
