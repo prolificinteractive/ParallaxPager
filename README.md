@@ -33,7 +33,7 @@ Use the class `com.prolific.parallaxview.ParallaxContainer` in your layout XML, 
 Ex:
 
 ```xml
-<com.prolific.parallaxview.ParallaxContainer
+<com.prolificinteractive.parallaxpager.ParallaxContainer
       android:id="@+id/parallax_container_1"
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
