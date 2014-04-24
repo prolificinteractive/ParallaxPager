@@ -10,6 +10,8 @@ buildscript {
 }
 
 allprojects {
+  group 'com.prolificinteractive'
+  version '0.7-SNAPSHOT'
   repositories {
     mavenCentral()
   }
