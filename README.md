@@ -5,6 +5,15 @@ Add some depth to your Android scrolling.
 
 ![](http://prolificinteractive.com/blog/wp-content/uploads/2014/04/parallax_planet_demo.gif)
 
+Download
+========
+
+Use Gradle to grab the dependency from Maven Central:
+
+>dependencies {
+>  compile 'com.prolificinteractive:parallaxpager:0.7'
+>}
+
 Installation
 ============
 
