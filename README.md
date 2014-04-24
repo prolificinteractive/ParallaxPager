@@ -36,7 +36,7 @@ Ex:
 <com.prolific.parallaxview.ParallaxContainer
       android:id="@+id/parallax_container_1"
       android:layout_width="match_parent"
-      android:layout_height="match_parent">
+      android:layout_height="match_parent"/>
 ```
 
 2. Create a layout XML file for each page
