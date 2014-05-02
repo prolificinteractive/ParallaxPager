@@ -24,6 +24,6 @@ android {
 }
 
 dependencies {
-  //compile project(':parallaxpager')
-  compile 'com.prolificinteractive:parallaxpager:0.7'
+  compile project(':parallaxpager')
+  //compile 'com.prolificinteractive:parallaxpager:0.7'
 }

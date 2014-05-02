@@ -119,7 +119,7 @@ Ex:
 
 ```java
 // find the parallax container
-ParallaxContainer parallaxContainer = (ParallaxContainer) findViewById(R.id.parallax_container_1);
+ParallaxContainer parallaxContainer = (ParallaxContainer) findViewById(R.id.parallax_container);
 
 // list the layout for each page (in order)
 int[] parallaxLayoutIds = {

@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("UnusedDeclaration")
 public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageChangeListener {
 
   protected Context mContext;
@@ -151,7 +152,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     mShouldLoop = shouldLoop;
   }
 
-  public void setupChildren (LayoutInflater inflater, int[] childIds) {
+  public void setupChildren (LayoutInflater inflater, int... childIds) {
 
     ParallaxLayoutInflater parallaxLayoutInflater = new ParallaxLayoutInflater(inflater, mContext);
 

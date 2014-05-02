@@ -12,12 +12,7 @@ public class ParallaxActivity extends FragmentActivity {
     setContentView(R.layout.activity_parallax);
 
     // find the parallax container
-    ParallaxContainer parallaxContainer = (ParallaxContainer) findViewById(R.id.parallax_container_1);
-
-    // list the layout for each page (in order)
-    int[] parallaxLayoutIds = {
-        R.layout.parallax_view_1, R.layout.parallax_view_2, R.layout.parallax_view_3, R.layout.parallax_view_4
-    };
+    ParallaxContainer parallaxContainer = (ParallaxContainer) findViewById(R.id.parallax_container);
 
     if (parallaxContainer != null) {
 
@@ -28,7 +23,11 @@ public class ParallaxActivity extends FragmentActivity {
       parallaxContainer.setLooping(true);
 
       // wrap the inflater and inflate children with custom attributes
-      parallaxContainer.setupChildren(getLayoutInflater(), parallaxLayoutIds);
+      parallaxContainer.setupChildren(getLayoutInflater(),
+          R.layout.parallax_view_1,
+          R.layout.parallax_view_2,
+          R.layout.parallax_view_3,
+          R.layout.parallax_view_4);
     }
   }
 }

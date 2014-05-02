@@ -14,7 +14,7 @@
       android:text="@string/title"/>
 
   <com.prolificinteractive.parallaxpager.ParallaxContainer
-      android:id="@+id/parallax_container_1"
+      android:id="@+id/parallax_container"
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
 
