@@ -113,12 +113,10 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
       pageIndex = pageIndex % pageCount;
     }
 
+    ParallaxViewTag tag;
     for (View view : parallaxViews) {
-      ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.parallax_view_tag);
-
-      if (tag == null) {
-        return;
-      }
+      tag = (ParallaxViewTag) view.getTag(R.id.parallax_view_tag);
+      if (tag == null) { continue; }
 
       if ((pageIndex == tag.index - 1
           || (isLooping && (pageIndex == tag.index - 1 + pageCount)))
