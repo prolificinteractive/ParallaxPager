@@ -15,10 +15,6 @@ public class ParallaxActivity extends FragmentActivity {
     ParallaxContainer parallaxContainer = (ParallaxContainer) findViewById(R.id.parallax_container);
 
     if (parallaxContainer != null) {
-
-      // attach fragment manager (a future release will remove this requirement)
-      parallaxContainer.setFragmentManager(getSupportFragmentManager());
-
       // specify whether pager will loop
       parallaxContainer.setLooping(true);
 

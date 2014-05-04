@@ -77,19 +77,18 @@ public class ParallaxFactory implements LayoutInflater.Factory {
 
     TypedArray a = context.obtainStyledAttributes(attrs, attrIds);
 
-    ParallaxViewTag parallaxViewTag = new ParallaxViewTag();
-
     if (a != null) {
-      parallaxViewTag.alphaIn = a.getFloat(0, 0.0f);
-      parallaxViewTag.alphaOut = a.getFloat(1, 0.0f);
-      parallaxViewTag.xIn = a.getFloat(2, 0.0f);
-      parallaxViewTag.xOut = a.getFloat(3, 0.0f);
-      parallaxViewTag.yIn = a.getFloat(4, 0.0f);
-      parallaxViewTag.yOut = a.getFloat(5, 0.0f);
-
+      if (a.length() > 0) {
+        ParallaxViewTag tag = new ParallaxViewTag();
+        tag.alphaIn = a.getFloat(0, 0f);
+        tag.alphaOut = a.getFloat(1, 0f);
+        tag.xIn = a.getFloat(2, 0f);
+        tag.xOut = a.getFloat(3, 0f);
+        tag.yIn = a.getFloat(4, 0f);
+        tag.yOut = a.getFloat(5, 0f);
+        view.setTag(R.id.parallax_view_tag, tag);
+      }
       a.recycle();
-
-      view.setTag(R.id.TAG_ID, parallaxViewTag);
     }
   }
 }

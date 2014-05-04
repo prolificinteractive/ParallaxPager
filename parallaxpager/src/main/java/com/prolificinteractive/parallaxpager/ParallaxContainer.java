@@ -1,9 +1,6 @@
 package com.prolificinteractive.parallaxpager;
 
 import android.content.Context;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -13,118 +10,141 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+
 @SuppressWarnings("UnusedDeclaration")
 public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageChangeListener {
 
-  protected Context mContext;
-  protected int mChildCount;
-  protected int mCurrentChild;
-  protected List<View> mParallaxViewList = new ArrayList<View>();
-  protected ViewPager mViewPager;
-  protected SpaceFragment mSpaceFragment1;
-  protected SpaceFragment mSpaceFragment2;
-  protected int mContainerWidth;
-  private FragmentManager mManager;
-  private boolean mShouldLoop = false;
+  private List<View> parallaxViews = new ArrayList<>();
+  private ViewPager viewPager;
+  private int pageCount = 0;
+  private int containerWidth;
+  private boolean isLooping = false;
+  private final ParallaxPagerAdapter adapter;
 
   public ParallaxContainer(Context context) {
     super(context);
-    mContext = context;
+    adapter = new ParallaxPagerAdapter(context);
   }
 
   public ParallaxContainer(Context context, AttributeSet attrs) {
     super(context, attrs);
-    mContext = context;
+    adapter = new ParallaxPagerAdapter(context);
   }
 
   public ParallaxContainer(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
-    mContext = context;
+    adapter = new ParallaxPagerAdapter(context);
   }
 
   @Override
   public void onWindowFocusChanged(boolean hasFocus) {
-    mContainerWidth = getMeasuredWidth();
-    if (mViewPager != null) {
-      onPageScrolled(mViewPager.getCurrentItem(), 0, 0);
+    containerWidth = getMeasuredWidth();
+    if (viewPager != null) {
+      onPageScrolled(viewPager.getCurrentItem(), 0, 0);
     }
     super.onWindowFocusChanged(hasFocus);
   }
 
-  // top-level children only
-  private void addChildrenToParallaxViewList() {
-    for (mCurrentChild = 0; mCurrentChild < mChildCount; mCurrentChild++) {
-      View view = getChildAt(mCurrentChild);
-
-      if (view instanceof ViewGroup) {
-        addGrandChildrenToParallaxViewList((ViewGroup) view);
-      } else {
-        addViewToParallaxViewList(view);
-      }
-    }
+  public void setLooping (boolean looping) {
+    isLooping = looping;
+    updateAdapterCount();
   }
 
-  // recursively add all children UNDER top-level
-  private void addGrandChildrenToParallaxViewList(ViewGroup viewGroup) {
-    int count = viewGroup.getChildCount();
-    for (int i = 0; i < count; i++) {
-      View view = viewGroup.getChildAt(i);
-      if (view instanceof ViewGroup) {
-        addGrandChildrenToParallaxViewList((ViewGroup) view);
-      } else {
-        addViewToParallaxViewList(view);
-      }
-    }
+  private void updateAdapterCount() {
+    adapter.setCount(isLooping ? Integer.MAX_VALUE : pageCount);
   }
+
+  public void setupChildren (LayoutInflater inflater, int... childIds) {
+    if (getChildCount() > 0) {
+      throw new RuntimeException(
+          "setupChildren should only be called once when ParallaxContainer is empty");
+    }
+
+    ParallaxLayoutInflater parallaxLayoutInflater =
+        new ParallaxLayoutInflater(inflater, getContext());
+
+    for (int childId : childIds) {
+      parallaxLayoutInflater.inflate(childId, this);
+    }
+
+    // hold pageCount because it will change after we add viewpager
+    pageCount = getChildCount();
+    for (int i = 0; i < pageCount; i++) {
+      View view = getChildAt(i);
+      addParallaxView(view, i);
+    }
+
+    updateAdapterCount();
+
+    // make view pager with same attributes as container
+    viewPager = new ViewPager(getContext());
+    viewPager.setLayoutParams(new LayoutParams(MATCH_PARENT, MATCH_PARENT));
+    viewPager.setOnPageChangeListener(this);
+    viewPager.setId(R.id.parallax_pager);
+    viewPager.setAdapter(adapter);
+
+    addView(viewPager);
+    bringChildToFront(viewPager);
+  }
+
 
   // attach attributes in tag
-  private void addViewToParallaxViewList(View view) {
-    ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.TAG_ID);
-    if (tag == null) {
-      tag = new ParallaxViewTag();
+  private void addParallaxView(View view, int pageIndex) {
+    if (view instanceof ViewGroup) {
+      // recurse children
+      ViewGroup viewGroup = (ViewGroup) view;
+      for (int i = 0, childCount = viewGroup.getChildCount(); i < childCount; i++) {
+        addParallaxView(viewGroup.getChildAt(i), pageIndex);
+      }
+    } else {
+      ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.parallax_view_tag);
+      if (tag != null) {
+        // only track view if it has a parallax tag
+        tag.index = pageIndex;
+        parallaxViews.add(view);
+      }
     }
-    tag.position = mCurrentChild;
-    mParallaxViewList.add(view);
   }
+
 
   @Override public void onPageScrolled(int position, float offset, int offsetPixels) {
-    if (mChildCount > 0) {
-      position = position % mChildCount;
+    if (pageCount > 0) {
+      position = position % pageCount;
     }
 
-    for (View view : mParallaxViewList) {
-      applyParallaxEffects(view, position, offsetPixels);
+    for (View view : parallaxViews) {
+      doParallax(view, position, offsetPixels);
     }
   }
-
   @Override public void onPageSelected(int position) {}
   @Override public void onPageScrollStateChanged(int i) {}
 
-  private void applyParallaxEffects(View view, int position, float offsetPixels) {
+  private void doParallax(View view, int pageIndex, float offsetPixels) {
 
-    ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.TAG_ID);
+    ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.parallax_view_tag);
 
     if (tag == null) {
       return;
     }
 
-    if ((position == tag.position - 1
-        || position == tag.position + (mChildCount - 1))
-        && mContainerWidth != 0) {
+    if ((pageIndex == tag.index - 1
+        || (isLooping && (pageIndex == tag.index + pageCount - 1)))
+        && containerWidth != 0) {
 
       // make visible
       view.setVisibility(VISIBLE);
 
       // slide in from right
-      view.setTranslationX((mContainerWidth - offsetPixels) * tag.xIn);
+      view.setTranslationX((containerWidth - offsetPixels) * tag.xIn);
 
       // slide in from top
-      view.setTranslationY(0 - (mContainerWidth - offsetPixels) * tag.yIn);
+      view.setTranslationY(0 - (containerWidth - offsetPixels) * tag.yIn);
 
       // fade in
-      view.setAlpha(1.0f - (mContainerWidth - offsetPixels) * tag.alphaIn / mContainerWidth);
+      view.setAlpha(1.0f - (containerWidth - offsetPixels) * tag.alphaIn / containerWidth);
 
-    } else if (position == tag.position) {
+    } else if (pageIndex == tag.index) {
 
       // make visible
       view.setVisibility(VISIBLE);
@@ -136,65 +156,10 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
       view.setTranslationY(0 - offsetPixels * tag.yOut);
 
       // fade out
-      view.setAlpha(1.0f - offsetPixels * tag.alphaOut / mContainerWidth);
+      view.setAlpha(1.0f - offsetPixels * tag.alphaOut / containerWidth);
 
     } else {
       view.setVisibility(GONE);
     }
-  }
-
-  // TODO: remove in future versions
-  public void setFragmentManager (FragmentManager manager) {
-    mManager = manager;
-  }
-
-  public void setLooping (boolean shouldLoop) {
-    mShouldLoop = shouldLoop;
-  }
-
-  public void setupChildren (LayoutInflater inflater, int... childIds) {
-
-    ParallaxLayoutInflater parallaxLayoutInflater = new ParallaxLayoutInflater(inflater, mContext);
-
-    for (int childId : childIds) {
-      parallaxLayoutInflater.inflate(childId, this);
-    }
-
-    // how many steps before the viewpager loops
-    mChildCount = getChildCount();
-
-    addChildrenToParallaxViewList();
-
-    // make view pager with same attributes as container
-    mViewPager = new ViewPager(mContext);
-    mViewPager.setLayoutParams(
-        new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-    mViewPager.setOnPageChangeListener(this);
-    mViewPager.setId(R.id.PAGER_ID);
-
-    // two empty fragments
-    mSpaceFragment1 = new SpaceFragment();
-    mSpaceFragment2 = new SpaceFragment();
-
-    // create an adapter that provides 7 blank fragments
-    if (mManager != null) {
-      mViewPager.setAdapter(new FragmentPagerAdapter(mManager) {
-        @Override public Fragment getItem(int position) {
-          // switch off which fragment is active, so the other one can be recycled
-          return position % 2 == 1 ? mSpaceFragment1 : mSpaceFragment2;
-        }
-
-        @Override public int getCount() {
-          return mShouldLoop ? Integer.MAX_VALUE : mChildCount;
-        }
-
-        @Override public long getItemId(int position) {
-          return position % 2;
-        }
-      });
-    }
-
-    addView(mViewPager);
-    bringChildToFront(mViewPager);
   }
 }

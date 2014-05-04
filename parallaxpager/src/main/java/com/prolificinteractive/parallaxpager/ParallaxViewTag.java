@@ -1,7 +1,7 @@
 package com.prolificinteractive.parallaxpager;
 
 public class ParallaxViewTag {
-  protected int position;
+  protected int index;
   protected float xIn;
   protected float xOut;
   protected float yIn;
