@@ -108,58 +108,53 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   }
 
 
-  @Override public void onPageScrolled(int position, float offset, int offsetPixels) {
+  @Override public void onPageScrolled(int pageIndex, float offset, int offsetPixels) {
     if (pageCount > 0) {
-      position = position % pageCount;
+      pageIndex = pageIndex % pageCount;
     }
 
     for (View view : parallaxViews) {
-      doParallax(view, position, offsetPixels);
+      ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.parallax_view_tag);
+
+      if (tag == null) {
+        return;
+      }
+
+      if ((pageIndex == tag.index - 1
+          || (isLooping && (pageIndex == tag.index - 1 + pageCount)))
+          && containerWidth != 0) {
+
+        // make visible
+        view.setVisibility(VISIBLE);
+
+        // slide in from right
+        view.setTranslationX((containerWidth - offsetPixels) * tag.xIn);
+
+        // slide in from top
+        view.setTranslationY(0 - (containerWidth - offsetPixels) * tag.yIn);
+
+        // fade in
+        view.setAlpha(1.0f - (containerWidth - offsetPixels) * tag.alphaIn / containerWidth);
+
+      } else if (pageIndex == tag.index) {
+
+        // make visible
+        view.setVisibility(VISIBLE);
+
+        // slide out to left
+        view.setTranslationX(0 - offsetPixels * tag.xOut);
+
+        // slide out to top
+        view.setTranslationY(0 - offsetPixels * tag.yOut);
+
+        // fade out
+        view.setAlpha(1.0f - offsetPixels * tag.alphaOut / containerWidth);
+
+      } else {
+        view.setVisibility(GONE);
+      }
     }
   }
   @Override public void onPageSelected(int position) {}
   @Override public void onPageScrollStateChanged(int i) {}
-
-  private void doParallax(View view, int pageIndex, float offsetPixels) {
-
-    ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.parallax_view_tag);
-
-    if (tag == null) {
-      return;
-    }
-
-    if ((pageIndex == tag.index - 1
-        || (isLooping && (pageIndex == tag.index + pageCount - 1)))
-        && containerWidth != 0) {
-
-      // make visible
-      view.setVisibility(VISIBLE);
-
-      // slide in from right
-      view.setTranslationX((containerWidth - offsetPixels) * tag.xIn);
-
-      // slide in from top
-      view.setTranslationY(0 - (containerWidth - offsetPixels) * tag.yIn);
-
-      // fade in
-      view.setAlpha(1.0f - (containerWidth - offsetPixels) * tag.alphaIn / containerWidth);
-
-    } else if (pageIndex == tag.index) {
-
-      // make visible
-      view.setVisibility(VISIBLE);
-
-      // slide out to left
-      view.setTranslationX(0 - offsetPixels * tag.xOut);
-
-      // slide out to top
-      view.setTranslationY(0 - offsetPixels * tag.yOut);
-
-      // fade out
-      view.setAlpha(1.0f - offsetPixels * tag.alphaOut / containerWidth);
-
-    } else {
-      view.setVisibility(GONE);
-    }
-  }
 }
