@@ -83,9 +83,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     viewPager.setOnPageChangeListener(this);
     viewPager.setId(R.id.parallax_pager);
     viewPager.setAdapter(adapter);
-
-    addView(viewPager);
-    bringChildToFront(viewPager);
+    addView(viewPager, 0);
   }
 
 
