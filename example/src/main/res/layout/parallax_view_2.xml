@@ -18,15 +18,34 @@
       app:a_out="@dimen/parallax_speed_slow"
       android:src="@drawable/earth"/>
 
-  <TextView
+  <LinearLayout
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
-      android:layout_margin="@dimen/margin_size"
-      android:textSize="@dimen/text_size"
-      android:textColor="@android:color/white"
-      app:x_in="@dimen/parallax_speed_medium_rev"
-      app:x_out="@dimen/parallax_speed_medium_rev"
-      android:text="@string/earth"/>
+      android:orientation="horizontal"
+      app:x_in="@dimen/parallax_speed_medium"
+      app:x_out="@dimen/parallax_speed_medium"
+      >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_size"
+        android:textSize="@dimen/text_size"
+        android:textColor="@android:color/white"
+        android:text="@string/earth"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/margin_size"
+        android:textSize="@dimen/text_size"
+        android:textColor="@android:color/white"
+        app:a_in="@dimen/parallax_speed_fast"
+        app:a_out="@dimen/parallax_speed_fast"
+        android:text="@string/home"/>
+
+      </LinearLayout>
+
 
   <ImageView
       android:layout_width="wrap_content"

@@ -95,13 +95,13 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
       for (int i = 0, childCount = viewGroup.getChildCount(); i < childCount; i++) {
         addParallaxView(viewGroup.getChildAt(i), pageIndex);
       }
-    } else {
-      ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.parallax_view_tag);
-      if (tag != null) {
-        // only track view if it has a parallax tag
-        tag.index = pageIndex;
-        parallaxViews.add(view);
-      }
+    }
+
+    ParallaxViewTag tag = (ParallaxViewTag) view.getTag(R.id.parallax_view_tag);
+    if (tag != null) {
+      // only track view if it has a parallax tag
+      tag.index = pageIndex;
+      parallaxViews.add(view);
     }
   }
 

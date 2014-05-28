@@ -5,6 +5,7 @@
   <string name="mercury">Mercury</string>
   <string name="venus">Venus</string>
   <string name="earth">Earth</string>
+  <string name="home">(Home)</string>
   <string name="mars">Mars</string>
   <string name="jupiter">Jupiter</string>
   <string name="saturn">Saturn</string>
