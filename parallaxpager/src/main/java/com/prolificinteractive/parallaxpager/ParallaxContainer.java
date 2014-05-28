@@ -64,6 +64,13 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     ParallaxLayoutInflater parallaxLayoutInflater =
         new ParallaxLayoutInflater(inflater, getContext());
 
+    if (childIds.length == 1) {
+      int id = childIds[0];
+      childIds = new int[2];
+      childIds[0] = id;
+      childIds[1] = id;
+    }
+
     for (int childId : childIds) {
       parallaxLayoutInflater.inflate(childId, this);
     }
@@ -85,7 +92,6 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     viewPager.setAdapter(adapter);
     addView(viewPager, 0);
   }
-
 
   // attach attributes in tag
   private void addParallaxView(View view, int pageIndex) {
