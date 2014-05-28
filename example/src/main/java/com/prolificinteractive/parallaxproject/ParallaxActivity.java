@@ -1,10 +1,10 @@
 package com.prolificinteractive.parallaxproject;
 
+import android.app.Activity;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import com.prolificinteractive.parallaxpager.ParallaxContainer;
 
-public class ParallaxActivity extends FragmentActivity {
+public class ParallaxActivity extends Activity {
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {

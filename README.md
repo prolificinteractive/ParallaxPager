@@ -11,7 +11,7 @@ Download
 Use Gradle to grab the dependency from Maven Central:
 
 ```groovy
-compile 'com.prolificinteractive:parallaxpager:0.7'
+compile 'com.prolificinteractive:parallaxpager:0.8.0'
 ```
 
 Installation
@@ -107,13 +107,9 @@ Important steps in `onCreate`:
 
 * Find the parallax container by ID
 
-* List the layouts for each page (in order). Currently there must be at least 2 in this list.
-
-* Attach a **Fragment Manager** for the underlying `ViewPager` (a future release will remove this requirement)
-
 * Specify whether the pager should loop (`true` means it *will* loop)
 
-* Submit a **Layout Inflater** and the list of child layouts.
+* Submit a **Layout Inflater** and list the layouts for each page (in order). Currently there must be at least 2 in this list (repeats allowed).
 
 Ex:
 
@@ -121,24 +117,17 @@ Ex:
 // find the parallax container
 ParallaxContainer parallaxContainer = (ParallaxContainer) findViewById(R.id.parallax_container);
 
-// list the layout for each page (in order)
-int[] parallaxLayoutIds = {
-    R.layout.parallax_view_1,
-    R.layout.parallax_view_2,
-    R.layout.parallax_view_3
-};
-
-// attach fragment manager, layout inflater, and children. specify whether pager will loop. 
 if (parallaxContainer != null) {
-
-  // attach fragment manager (a future release will remove this requirement)
-  parallaxContainer.setFragmentManager(getSupportFragmentManager());
 
   // specify whether pager will loop
   parallaxContainer.setLooping(true);
 
   // wrap the inflater and inflate children with custom attributes
-  parallaxContainer.setupChildren(getLayoutInflater(), parallaxLayoutIds);
+  parallaxContainer.setupChildren(getLayoutInflater(),
+      R.layout.parallax_view_1,
+      R.layout.parallax_view_2,
+      R.layout.parallax_view_3,
+      R.layout.parallax_view_4);
 }
 ```
 
