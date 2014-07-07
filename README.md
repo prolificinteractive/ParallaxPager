@@ -131,6 +131,11 @@ if (parallaxContainer != null) {
 }
 ```
 
+Extras
+======
+
+See the text of [this pull request](https://github.com/prolificinteractive/ParallaxPager/pull/5) for an example using a page indicator.
+
 License
 =======
 
