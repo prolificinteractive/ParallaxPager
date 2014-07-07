@@ -21,6 +21,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   private int containerWidth;
   private boolean isLooping = false;
   private final ParallaxPagerAdapter adapter;
+  private ViewPager.OnPageChangeListener pageChangeListener;
 
   public ParallaxContainer(Context context) {
     super(context);
@@ -87,10 +88,23 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     // make view pager with same attributes as container
     viewPager = new ViewPager(getContext());
     viewPager.setLayoutParams(new LayoutParams(MATCH_PARENT, MATCH_PARENT));
-    viewPager.setOnPageChangeListener(this);
     viewPager.setId(R.id.parallax_pager);
     viewPager.setAdapter(adapter);
+    attachOnPageChangeListener(viewPager, this);
+
     addView(viewPager, 0);
+  }
+
+  /**
+   * Sets the {@link ViewPager.OnPageChangeListener} to the embedded {@link ViewPager}
+   * created by the container.
+   *
+   * This method can be overridden to add an page indicator to the parallax view. If
+   * this method is overriden, make sure that the listener methods are called on this
+   * class as well.
+   */
+  protected void attachOnPageChangeListener(ViewPager viewPager, ViewPager.OnPageChangeListener listener) {
+    viewPager.setOnPageChangeListener(listener);
   }
 
   // attach attributes in tag
