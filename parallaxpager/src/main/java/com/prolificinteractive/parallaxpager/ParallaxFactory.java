@@ -73,7 +73,7 @@ public class ParallaxFactory implements LayoutInflater.Factory {
   protected void onViewCreated(View view, Context context, AttributeSet attrs) {
 
     int[] attrIds =
-        { R.attr.a_in, R.attr.a_out, R.attr.x_in, R.attr.x_out, R.attr.y_in, R.attr.y_out,  };
+        { R.attr.a_in, R.attr.a_out, R.attr.x_in, R.attr.x_out, R.attr.y_in, R.attr.y_out, };
 
     TypedArray a = context.obtainStyledAttributes(attrs, attrIds);
 

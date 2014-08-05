@@ -14,6 +14,5 @@ public class ParallaxActivity extends Activity {
           .add(android.R.id.content, new ParallaxFragment())
           .commit();
     }
-
   }
 }

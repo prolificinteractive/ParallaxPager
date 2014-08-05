@@ -2,7 +2,7 @@
 <resources>
   <dimen name="text_size">20sp</dimen>
   <dimen name="margin_size">10dp</dimen>
-  
+
   <item name="parallax_speed_slow" format="float" type="dimen">2.5</item>
   <item name="parallax_speed_medium" format="float" type="dimen">5.0</item>
   <item name="parallax_speed_fast" format="float" type="dimen">10.0</item>

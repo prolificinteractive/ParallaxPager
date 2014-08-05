@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    >
 
   <ImageView
       android:layout_width="wrap_content"
@@ -15,7 +16,8 @@
       app:x_out="@dimen/parallax_speed_slow"
       app:a_in="@dimen/parallax_speed_fast"
       app:a_out="@dimen/parallax_speed_fast"
-      android:src="@drawable/mercury"/>
+      android:src="@drawable/mercury"
+      />
 
   <TextView
       android:layout_width="wrap_content"
@@ -25,7 +27,8 @@
       android:textColor="@android:color/white"
       app:x_in="@dimen/parallax_speed_medium"
       app:x_out="@dimen/parallax_speed_medium"
-      android:text="@string/mercury"/>
+      android:text="@string/mercury"
+      />
 
   <ImageView
       android:layout_width="wrap_content"
@@ -36,7 +39,8 @@
       app:x_out="@dimen/parallax_speed_slow"
       app:a_in="@dimen/parallax_speed_fast"
       app:a_out="@dimen/parallax_speed_fast"
-      android:src="@drawable/venus"/>
+      android:src="@drawable/venus"
+      />
 
   <TextView
       android:layout_width="wrap_content"
@@ -47,6 +51,7 @@
       app:x_in="@dimen/parallax_speed_fast_rev"
       app:x_out="@dimen/parallax_speed_fast_rev"
       app:y_out="@dimen/parallax_speed_slow_rev"
-      android:text="@string/venus"/>
+      android:text="@string/venus"
+      />
 
 </LinearLayout>

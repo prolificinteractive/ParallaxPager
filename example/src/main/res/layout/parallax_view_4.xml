@@ -4,7 +4,8 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center_horizontal">
+    android:gravity="center_horizontal"
+    >
 
   <ImageView
       android:layout_width="wrap_content"
@@ -14,7 +15,8 @@
       app:x_in="@dimen/parallax_speed_slow"
       app:x_out="@dimen/parallax_speed_slow"
       app:a_in="@dimen/parallax_speed_slow"
-      android:src="@drawable/uranus"/>
+      android:src="@drawable/uranus"
+      />
 
   <TextView
       android:layout_width="wrap_content"
@@ -26,7 +28,8 @@
       app:x_out="@dimen/parallax_speed_medium"
       app:y_in="@dimen/parallax_speed_medium"
       app:y_out="@dimen/parallax_speed_medium"
-      android:text="@string/uranus"/>
+      android:text="@string/uranus"
+      />
 
   <ImageView
       android:layout_width="wrap_content"
@@ -36,7 +39,8 @@
       app:x_in="@dimen/parallax_speed_slow"
       app:x_out="@dimen/parallax_speed_slow"
       app:a_out="@dimen/parallax_speed_medium"
-      android:src="@drawable/neptune"/>
+      android:src="@drawable/neptune"
+      />
 
   <TextView
       android:layout_width="wrap_content"
@@ -48,6 +52,7 @@
       app:x_out="@dimen/parallax_speed_fast_rev"
       app:y_in="@dimen/parallax_speed_medium_rev"
       app:y_out="@dimen/parallax_speed_medium_rev"
-      android:text="@string/neptune"/>
+      android:text="@string/neptune"
+      />
 
 </LinearLayout>
