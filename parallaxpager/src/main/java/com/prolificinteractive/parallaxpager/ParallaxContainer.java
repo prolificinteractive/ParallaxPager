@@ -38,16 +38,12 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     adapter = new ParallaxPagerAdapter(context);
   }
 
-  @Override
-  public void onWindowFocusChanged(boolean hasFocus) {
+  @Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+    super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     containerWidth = getMeasuredWidth();
-    if (viewPager != null) {
-      onPageScrolled(viewPager.getCurrentItem(), 0, 0);
-    }
-    super.onWindowFocusChanged(hasFocus);
   }
 
-  public void setLooping (boolean looping) {
+  public void setLooping(boolean looping) {
     isLooping = looping;
     updateAdapterCount();
   }
@@ -56,7 +52,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     adapter.setCount(isLooping ? Integer.MAX_VALUE : pageCount);
   }
 
-  public void setupChildren (LayoutInflater inflater, int... childIds) {
+  public void setupChildren(LayoutInflater inflater, int... childIds) {
     if (getChildCount() > 0) {
       throw new RuntimeException(
           "setupChildren should only be called once when ParallaxContainer is empty");
@@ -103,7 +99,8 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
    * this method is overriden, make sure that the listener methods are called on this
    * class as well.
    */
-  protected void attachOnPageChangeListener(ViewPager viewPager, ViewPager.OnPageChangeListener listener) {
+  protected void attachOnPageChangeListener(ViewPager viewPager,
+      ViewPager.OnPageChangeListener listener) {
     viewPager.setOnPageChangeListener(listener);
   }
 
@@ -125,7 +122,6 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     }
   }
 
-
   @Override public void onPageScrolled(int pageIndex, float offset, int offsetPixels) {
     if (pageCount > 0) {
       pageIndex = pageIndex % pageCount;
@@ -139,7 +135,6 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
       if ((pageIndex == tag.index - 1
           || (isLooping && (pageIndex == tag.index - 1 + pageCount)))
           && containerWidth != 0) {
-
         // make visible
         view.setVisibility(VISIBLE);
 
@@ -151,9 +146,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 
         // fade in
         view.setAlpha(1.0f - (containerWidth - offsetPixels) * tag.alphaIn / containerWidth);
-
       } else if (pageIndex == tag.index) {
-
         // make visible
         view.setVisibility(VISIBLE);
 
@@ -165,12 +158,13 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 
         // fade out
         view.setAlpha(1.0f - offsetPixels * tag.alphaOut / containerWidth);
-
       } else {
         view.setVisibility(GONE);
       }
     }
   }
+
   @Override public void onPageSelected(int position) {}
+
   @Override public void onPageScrollStateChanged(int i) {}
 }
