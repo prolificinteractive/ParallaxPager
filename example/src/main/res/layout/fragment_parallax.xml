@@ -16,6 +16,14 @@
   <com.prolificinteractive.parallaxpager.ParallaxContainer
       android:id="@+id/parallax_container"
       android:layout_width="match_parent"
-      android:layout_height="match_parent"/>
+      android:layout_height="0dp"
+      android:layout_weight="1"/>
+
+  <Button
+      android:id="@+id/btn_new_frag"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="new fragment"
+      />
 
 </LinearLayout>
