@@ -2,8 +2,8 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-sonatypeUsername = project.hasProperty('sonatypeUsername') ? sonatypeUsername : ""
-sonatypePassword = project.hasProperty('sonatypePassword') ? sonatypePassword : ""
+sonatypeUsername = project.hasProperty('sonatypeUsername') ? sonatypeProlificUsername : ""
+sonatypePassword = project.hasProperty('sonatypePassword') ? sonatypeProlificPassword : ""
 
 android {
   compileSdkVersion 20
