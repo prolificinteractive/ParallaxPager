@@ -52,14 +52,15 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     adapter.setCount(isLooping ? Integer.MAX_VALUE : pageCount);
   }
 
+  public void setupChildren(int... childIds) {
+    setupChildren(LayoutInflater.from(getContext()), childIds);
+  }
+
   public void setupChildren(LayoutInflater inflater, int... childIds) {
     if (getChildCount() > 0) {
       throw new RuntimeException(
           "setupChildren should only be called once when ParallaxContainer is empty");
     }
-
-    ParallaxLayoutInflater parallaxLayoutInflater =
-        new ParallaxLayoutInflater(inflater, getContext());
 
     if (childIds.length == 1) {
       int id = childIds[0];
@@ -69,7 +70,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
     }
 
     for (int childId : childIds) {
-      parallaxLayoutInflater.inflate(childId, this);
+      inflater.inflate(childId, this);
     }
 
     // hold pageCount because it will change after we add viewpager
