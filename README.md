@@ -26,7 +26,6 @@ There are 4 important steps:
 3. Wrap the Activity Context
 
 4. Add the attachment code to `onCreate` of your Activity
-------------------------------------------
 
 
 
