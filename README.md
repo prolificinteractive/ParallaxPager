@@ -17,17 +17,21 @@ compile 'com.prolificinteractive:parallaxpager:0.8.0'
 Installation
 ============
 
-There are 3 important steps:
+There are 4 important steps:
 
 1. Use a `ParallaxContainer` in layout XML
 
 2. Create a layout XML file for each page
 
-3. Add the attachment code to `onCreate` of your Activity
+3. Wrap the Activity Context
 
-1. Use a `ParallaxContainer` in layout XML
+4. Add the attachment code to `onCreate` of your Activity
 ------------------------------------------
 
+
+
+1. Use a `ParallaxContainer` in layout XML
+-----------------------------------------
 Use the class `com.prolificinteractive.parallaxpager.ParallaxContainer` in your layout XML, sizing it however you like.
 
 Ex:
@@ -38,6 +42,8 @@ Ex:
       android:layout_width="match_parent"
       android:layout_height="match_parent"/>
 ```
+
+
 
 2. Create a layout XML file for each page
 -----------------------------------------
@@ -100,7 +106,24 @@ Ex:
 
 Keep in mind that negative values mean a change in direction for translation effects, and have no effect for alpha. For translation effects, values between `0` and `1` will result in a high level of funkiness.
 
-3. Add the attachment code to `onCreate` of your Activity
+
+
+
+3. Wrap the Activity Context
+-----------------------------------------
+Wrap the activity context using `com.prolificinteractive.parallaxpager.ParallaxContextWrapper` in your activity.
+
+Ex:
+
+```java
+  @Override
+  protected void attachBaseContext(Context newBase) {
+    super.attachBaseContext(new ParallaxContextWrapper(newBase));
+  }
+```
+
+
+4. Add the attachment code to `onCreate` of your Activity
 ---------------------------------------------------------
 
 Important steps in `onCreate`:
@@ -117,18 +140,15 @@ Ex:
 // find the parallax container
 ParallaxContainer parallaxContainer = (ParallaxContainer) findViewById(R.id.parallax_container);
 
-if (parallaxContainer != null) {
+// specify whether pager will loop
+parallaxContainer.setLooping(true);
 
-  // specify whether pager will loop
-  parallaxContainer.setLooping(true);
-
-  // wrap the inflater and inflate children with custom attributes
-  parallaxContainer.setupChildren(getLayoutInflater(),
-      R.layout.parallax_view_1,
-      R.layout.parallax_view_2,
-      R.layout.parallax_view_3,
-      R.layout.parallax_view_4);
-}
+// wrap the inflater and inflate children with custom attributes
+parallaxContainer.setupChildren(getLayoutInflater(),
+    R.layout.parallax_view_1,
+    R.layout.parallax_view_2,
+    R.layout.parallax_view_3,
+    R.layout.parallax_view_4);
 ```
 
 Extras
