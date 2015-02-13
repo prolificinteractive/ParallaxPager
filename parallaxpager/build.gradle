@@ -2,16 +2,13 @@ apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'signing'
 
-sonatypeUsername = project.hasProperty('sonatypeUsername') ? sonatypeProlificUsername : ""
-sonatypePassword = project.hasProperty('sonatypePassword') ? sonatypeProlificPassword : ""
-
 android {
-  compileSdkVersion 20
-  buildToolsVersion "20.0.0"
+  compileSdkVersion 21
+  buildToolsVersion "21.1.2"
 
   defaultConfig {
     minSdkVersion 14
-    targetSdkVersion 20
+    targetSdkVersion 21
     versionCode 1
     versionName version
   }
@@ -49,7 +46,7 @@ signing {
 }
 
 dependencies {
-  compile 'com.android.support:support-v4:20.+'
+  compile 'com.android.support:support-v4:21.0.3'
 }
 
 uploadArchives {

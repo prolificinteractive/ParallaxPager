@@ -10,14 +10,18 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 public class ParallaxActivity extends Activity {
 
   @Override protected void attachBaseContext(Context newBase) {
-    super.attachBaseContext(new CalligraphyContextWrapper(new ParallaxContextWrapper(newBase)));
+    super.attachBaseContext(CalligraphyContextWrapper.wrap(new ParallaxContextWrapper(newBase)));
   }
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    CalligraphyConfig.initDefault("Bitter-Bold.ttf");
+    CalligraphyConfig.initDefault(
+        new CalligraphyConfig.Builder()
+            .setDefaultFontPath("Bitter-Bold.ttf")
+            .build()
+    );
 
     if (savedInstanceState == null) {
       getFragmentManager().beginTransaction()
