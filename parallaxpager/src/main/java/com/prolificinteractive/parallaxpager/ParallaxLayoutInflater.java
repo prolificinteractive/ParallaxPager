@@ -12,10 +12,11 @@ import java.lang.reflect.Method;
 import org.xmlpull.v1.XmlPullParser;
 
 /**
- * Created by chris on 19/12/2013
- * Project: Calligraphy
+ * Custom LayoutInflater that intercepts View creation and notifies ParallaxFactory of new views.
+ * This class is a modified version from the Calligraphy project
+ * @see uk.co.chrisjenx.calligraphy.CalligraphyLayoutInflater
  */
-class ParallaxLayoutInflater extends LayoutInflater implements CalligraphyActivityFactory {
+class ParallaxLayoutInflater extends LayoutInflater {
 
   private static final String[] sClassPrefixList = {
       "android.widget.",
@@ -114,18 +115,6 @@ class ParallaxLayoutInflater extends LayoutInflater implements CalligraphyActivi
   // LayoutInflater ViewCreators
   // Works in order of inflation
   // ===
-
-  /**
-   * The Activity onCreateView (PrivateFactory) is the third port of call for LayoutInflation.
-   * We opted to manual injection over aggressive reflection, this should be less fragile.
-   */
-  @Override
-  @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-  public View onActivityCreateView(View parent, View view, String name, Context context,
-      AttributeSet attrs) {
-    return mParallaxFactory.onViewCreated(
-        createCustomViewInternal(parent, view, name, context, attrs), context, attrs);
-  }
 
   /**
    * The LayoutInflater onCreateView is the fourth port of call for LayoutInflation.
