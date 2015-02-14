@@ -29,7 +29,7 @@ public class ParallaxFactory {
       return null;
     }
 
-    onViewCreatedInternal(view, context, attrs);
+    view = onViewCreatedInternal(view, context, attrs);
     for (OnViewCreatedListener listener : otherListeners) {
       if (listener != null) {
         view = listener.onViewCreated(view, context, attrs);

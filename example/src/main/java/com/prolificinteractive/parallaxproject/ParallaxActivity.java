@@ -1,12 +1,12 @@
 package com.prolificinteractive.parallaxproject;
 
-import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import com.prolificinteractive.parallaxpager.ParallaxContextWrapper;
 import uk.co.chrisjenx.calligraphy.OpenCalligraphyFactory;
 
-public class ParallaxActivity extends Activity {
+public class ParallaxActivity extends ActionBarActivity {
 
   @Override protected void attachBaseContext(Context newBase) {
     //ParallaxPager and Calligraphy don't seem to play nicely together
@@ -25,10 +25,11 @@ public class ParallaxActivity extends Activity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_parallax);
 
     if (savedInstanceState == null) {
       getFragmentManager().beginTransaction()
-          .add(android.R.id.content, new ParallaxFragment())
+          .add(R.id.content, new ParallaxFragment())
           .commit();
     }
   }
