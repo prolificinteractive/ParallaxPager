@@ -28,7 +28,7 @@ public class ParallaxActivity extends ActionBarActivity {
     setContentView(R.layout.activity_parallax);
 
     if (savedInstanceState == null) {
-      getFragmentManager().beginTransaction()
+      getSupportFragmentManager().beginTransaction()
           .add(R.id.content, new ParallaxFragment())
           .commit();
     }
