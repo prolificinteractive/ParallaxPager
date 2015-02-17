@@ -1,7 +1,7 @@
 package com.prolificinteractive.parallaxproject;
 
-import android.app.Fragment;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,7 +31,7 @@ public class ParallaxFragment extends Fragment {
     view.findViewById(R.id.btn_new_frag).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         getFragmentManager().beginTransaction()
-            .replace(android.R.id.content, new Fragment())
+            .replace(R.id.content, new Fragment())
             .addToBackStack("test")
             .commit();
       }
