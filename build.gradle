@@ -11,9 +11,9 @@ buildscript {
 
 allprojects {
   group 'com.prolificinteractive'
-  version '2.0.0-SNAPSHOT'
+  version '2.0.0'
   repositories {
-    mavenCentral()
+    jcenter()
     //maven { url 'https://oss.sonatype.org/content/repositories/snapshots/' }
   }
 }
