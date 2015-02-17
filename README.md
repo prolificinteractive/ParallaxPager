@@ -14,8 +14,8 @@ Use Gradle to grab the dependency from Maven Central:
 compile 'com.prolificinteractive:parallaxpager:1.0.0'
 ```
 
-Installation
-============
+Usage
+=====
 
 There are 4 important steps:
 
@@ -28,9 +28,8 @@ There are 4 important steps:
 4. Add the attachment code to `onCreate` of your Activity
 
 
+## 1. Use a `ParallaxContainer` in layout XML
 
-1. Use a `ParallaxContainer` in layout XML
------------------------------------------
 Use the class `com.prolificinteractive.parallaxpager.ParallaxContainer` in your layout XML, sizing it however you like.
 
 Ex:
@@ -43,9 +42,7 @@ Ex:
 ```
 
 
-
-2. Create a layout XML file for each page
------------------------------------------
+## 2. Create a layout XML file for each page
 
 Each page must have its own layout XML file. Use whichever Layouts or Views you like, as usual.
 
@@ -106,10 +103,7 @@ Ex:
 Keep in mind that negative values mean a change in direction for translation effects, and have no effect for alpha. For translation effects, values between `0` and `1` will result in a high level of funkiness.
 
 
-
-
-3. Wrap the Activity Context
------------------------------------------
+## 3. Wrap the Activity Context
 Wrap the activity context using `com.prolificinteractive.parallaxpager.ParallaxContextWrapper` in your activity.
 
 Ex:
@@ -121,9 +115,28 @@ Ex:
   }
 ```
 
+**Note**: If you are using this in conjunction with another library that wraps Context, it doesn't appear to like chaining them together.
+Instead, we've added the ability to hook into the View creation process to use with other libraries.
+The sample project shows how to hook into Calligraphy.
 
-4. Add the attachment code to `onCreate` of your Activity
----------------------------------------------------------
+Ex:
+
+```java
+  @Override
+  protected void attachBaseContext(Context newBase) {
+    super.attachBaseContext(
+        new ParallaxContextWrapper(newBase, new OnViewCreatedListener() {
+          @Override public View onViewCreated(View view, Context context, AttributeSet attrs) {
+            //Setup view as needed
+            return view; //Return the view passed in
+          }
+        })
+    );
+  }
+```
+
+
+## 4. Add the attachment code to `onCreate` of your Activity
 
 Important steps in `onCreate`:
 
@@ -158,7 +171,7 @@ See the text of [this pull request](https://github.com/prolificinteractive/Paral
 License
 =======
 
->Copyright 2014 Prolific Interactive
+>Copyright 2015 Prolific Interactive
 >
 >Licensed under the Apache License, Version 2.0 (the "License");
 >you may not use this file except in compliance with the License.
