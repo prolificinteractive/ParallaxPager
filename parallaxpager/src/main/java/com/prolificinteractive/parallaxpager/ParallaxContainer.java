@@ -24,17 +24,16 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   private ViewPager.OnPageChangeListener pageChangeListener;
 
   public ParallaxContainer(Context context) {
-    super(context);
-    adapter = new ParallaxPagerAdapter(context);
+    this(context, null);
   }
 
   public ParallaxContainer(Context context, AttributeSet attrs) {
-    super(context, attrs);
-    adapter = new ParallaxPagerAdapter(context);
+    this(context, attrs, 0);
   }
 
   public ParallaxContainer(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
+
     adapter = new ParallaxPagerAdapter(context);
   }
 
@@ -100,6 +99,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
    * this method is overriden, make sure that the listener methods are called on this
    * class as well.
    */
+  @Deprecated
   protected void attachOnPageChangeListener(ViewPager viewPager,
       ViewPager.OnPageChangeListener listener) {
     viewPager.setOnPageChangeListener(listener);
@@ -121,6 +121,27 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
       tag.index = pageIndex;
       parallaxViews.add(view);
     }
+  }
+
+  /**
+   * <b>NOTE:</b> this is exposed for use with existing code which requires a {@linkplain android.support.v4.view.ViewPager} instance.
+   * Please make sure that if you call methods like {@linkplain android.support.v4.view.ViewPager#setAdapter(android.support.v4.view.PagerAdapter) setAdapter()}
+   * or {@linkplain android.support.v4.view.ViewPager#setOnPageChangeListener(android.support.v4.view.ViewPager.OnPageChangeListener) setOnPageChangeListener()}
+   * on the instance returned, that you do so with forethought and good reason.
+   *
+   * @return the internal ViewPager, null before {@linkplain #setupChildren(int...) setupChildren()} is called
+   */
+  public ViewPager getViewPager() {
+    return viewPager;
+  }
+
+  /**
+   * Set a listener to recieve page change events
+   * @see android.support.v4.view.ViewPager#setOnPageChangeListener(android.support.v4.view.ViewPager.OnPageChangeListener)
+   * @param pageChangeListener the listener, or null to clear
+   */
+  public void setOnPageChangeListener(ViewPager.OnPageChangeListener pageChangeListener) {
+    this.pageChangeListener = pageChangeListener;
   }
 
   @Override public void onPageScrolled(int pageIndex, float offset, int offsetPixels) {
@@ -163,9 +184,21 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
         view.setVisibility(GONE);
       }
     }
+
+    if (pageChangeListener != null) {
+      pageChangeListener.onPageScrolled(pageIndex, offset, offsetPixels);
+    }
   }
 
-  @Override public void onPageSelected(int position) {}
+  @Override public void onPageSelected(int position) {
+    if (pageChangeListener != null) {
+      pageChangeListener.onPageSelected(position);
+    }
+  }
 
-  @Override public void onPageScrollStateChanged(int i) {}
+  @Override public void onPageScrollStateChanged(int i) {
+    if (pageChangeListener != null) {
+      pageChangeListener.onPageScrollStateChanged(i);
+    }
+  }
 }
