@@ -99,6 +99,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
    * this method is overriden, make sure that the listener methods are called on this
    * class as well.
    */
+  @Deprecated
   protected void attachOnPageChangeListener(ViewPager viewPager,
       ViewPager.OnPageChangeListener listener) {
     viewPager.setOnPageChangeListener(listener);
