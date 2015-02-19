@@ -2,12 +2,14 @@ package com.prolificinteractive.parallaxproject;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import com.prolificinteractive.parallaxpager.ParallaxContainer;
 
-public class ParallaxFragment extends Fragment {
+public class ParallaxFragment extends Fragment implements ViewPager.OnPageChangeListener {
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
@@ -28,6 +30,8 @@ public class ParallaxFragment extends Fragment {
         R.layout.parallax_view_3,
         R.layout.parallax_view_4);
 
+    parallaxContainer.setOnPageChangeListener(this);
+
     view.findViewById(R.id.btn_new_frag).setOnClickListener(new View.OnClickListener() {
       @Override public void onClick(View v) {
         getFragmentManager().beginTransaction()
@@ -38,5 +42,17 @@ public class ParallaxFragment extends Fragment {
     });
 
     return view;
+  }
+
+  @Override public void onPageScrolled(int position, float offset, int offsetPixels) {
+
+  }
+
+  @Override public void onPageSelected(int position) {
+    Toast.makeText(getActivity(), "Page Selected: " + position, Toast.LENGTH_SHORT).show();
+  }
+
+  @Override public void onPageScrollStateChanged(int state) {
+
   }
 }
