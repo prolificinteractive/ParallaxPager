@@ -30,6 +30,7 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
         R.layout.parallax_view_3,
         R.layout.parallax_view_4);
 
+    // optionally set a ViewPager.OnPageChangeListener
     parallaxContainer.setOnPageChangeListener(this);
 
     view.findViewById(R.id.btn_new_frag).setOnClickListener(new View.OnClickListener() {

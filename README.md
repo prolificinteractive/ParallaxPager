@@ -25,7 +25,7 @@ There are 4 important steps:
 
 3. Wrap the Activity Context
 
-4. Add the attachment code to `onCreate` of your Activity
+4. Add the attachment code to `onCreate` of your Activity or `onCreateView` of your Fragment
 
 
 ## 1. Use a `ParallaxContainer` in layout XML
@@ -136,9 +136,9 @@ Ex:
 ```
 
 
-## 4. Add the attachment code to `onCreate` of your Activity
+## 4. Add the attachment code to `onCreate` of your Activity or `onCreateView` of your Fragment
 
-Important steps in `onCreate`:
+Important steps in `onCreate` of an Activity (or `onCreateView` of a Fragment):
 
 * Find the parallax container by ID
 
@@ -166,7 +166,24 @@ parallaxContainer.setupChildren(getLayoutInflater(),
 Extras
 ======
 
-See the text of [this pull request](https://github.com/prolificinteractive/ParallaxPager/pull/5) for an example using a page indicator.
+## Extra 1. Setting a `ViewPager.OnPageChangeListener`
+
+You can set a `ViewPager.OnPageChangeListener` after the attachment code in step 4.
+
+```java
+	// optionally set a ViewPager.OnPageChangeListener
+    parallaxContainer.setOnPageChangeListener(this);
+```
+
+## Extra 2. `ViewPager` access
+
+You have access to the `ViewPager` by calling:
+
+```java
+	parallaxContainer.getViewPager();
+```
+
+This is exposed for use with existing code which requires a `ViewPager` instance. Please make sure that if you call methods like `setAdapter` or `setOnPageChangeListener` on the instance returned, that you do so with forethought and good reason.
 
 License
 =======
