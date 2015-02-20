@@ -174,7 +174,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
       } else if (pageIndex == tag.index) {
         if (!tag.overrideVisibility) {
           // make visible
-          view.setVisibility(view.getVisibility() == INVISIBLE ? INVISIBLE : VISIBLE);
+          view.setVisibility(VISIBLE);
         }
 
         // slide out to left
