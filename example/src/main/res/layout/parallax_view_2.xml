@@ -8,6 +8,7 @@
     >
 
   <ImageView
+      android:id="@+id/imageview_earth"
       android:layout_width="wrap_content"
       android:layout_height="0dp"
       android:layout_weight="1"
@@ -17,6 +18,7 @@
       app:y_in="@dimen/parallax_speed_slow"
       app:a_in="@dimen/parallax_speed_slow"
       app:a_out="@dimen/parallax_speed_slow"
+      app:override_visibility="true"
       android:src="@drawable/earth"
       />
 

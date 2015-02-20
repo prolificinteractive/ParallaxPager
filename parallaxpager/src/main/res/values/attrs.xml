@@ -6,4 +6,5 @@
   <attr name="x_out" format="float" />
   <attr name="y_in" format="float" />
   <attr name="y_out" format="float" />
+  <attr name="override_visibility" format="boolean" />
 </resources>

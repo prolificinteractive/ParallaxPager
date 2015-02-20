@@ -6,10 +6,13 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 import com.prolificinteractive.parallaxpager.ParallaxContainer;
 
 public class ParallaxFragment extends Fragment implements ViewPager.OnPageChangeListener {
+
+  ImageView mEarthImageView;
 
   @Override public View onCreateView(LayoutInflater inflater, ViewGroup container,
       Bundle savedInstanceState) {
@@ -42,11 +45,22 @@ public class ParallaxFragment extends Fragment implements ViewPager.OnPageChange
       }
     });
 
+    // Earth ImageView has `override_visibility` set to `true` so we need to manually manage visibility
+    mEarthImageView = (ImageView) view.findViewById(R.id.imageview_earth);
+
     return view;
   }
 
   @Override public void onPageScrolled(int position, float offset, int offsetPixels) {
-
+    // example of manually setting view visibility
+    if (position == 1 && offset > 0.2) {
+      // just before leaving the screen, Earth will disappear
+      mEarthImageView.setVisibility(View.INVISIBLE);
+    } else if (position == 0 || position == 1) {
+      mEarthImageView.setVisibility(View.VISIBLE);
+    } else {
+      mEarthImageView.setVisibility(View.GONE);
+    }
   }
 
   @Override public void onPageSelected(int position) {
