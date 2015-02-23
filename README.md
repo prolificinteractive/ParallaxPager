@@ -171,8 +171,8 @@ Extras
 You can set a `ViewPager.OnPageChangeListener` after the attachment code in step 4.
 
 ```java
-	// optionally set a ViewPager.OnPageChangeListener
-    parallaxContainer.setOnPageChangeListener(this);
+// optionally set a ViewPager.OnPageChangeListener
+parallaxContainer.setOnPageChangeListener(this);
 ```
 
 ## Extra 2. `ViewPager` access
@@ -180,10 +180,18 @@ You can set a `ViewPager.OnPageChangeListener` after the attachment code in step
 You have access to the `ViewPager` by calling:
 
 ```java
-	parallaxContainer.getViewPager();
+parallaxContainer.getViewPager();
 ```
 
 This is exposed for use with existing code which requires a `ViewPager` instance. Please make sure that if you call methods like `setAdapter` or `setOnPageChangeListener` on the instance returned, that you do so with forethought and good reason.
+
+## Extra 3. Overriding parallax visibility
+
+Parallax views will be `VISIBLE` when onscreen, and `GONE` when offscreen. If you need to override this behavior, set this attribute on your View in XML:
+
+```xml
+app:override_visibility="true"
+```
 
 License
 =======

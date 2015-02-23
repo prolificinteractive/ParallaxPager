@@ -41,7 +41,7 @@ public class ParallaxFactory {
   private View onViewCreatedInternal(View view, final Context context, AttributeSet attrs) {
 
     int[] attrIds =
-        { R.attr.a_in, R.attr.a_out, R.attr.x_in, R.attr.x_out, R.attr.y_in, R.attr.y_out, };
+        { R.attr.a_in, R.attr.a_out, R.attr.x_in, R.attr.x_out, R.attr.y_in, R.attr.y_out, R.attr.override_visibility };
 
     TypedArray a = context.obtainStyledAttributes(attrs, attrIds);
 
@@ -54,6 +54,7 @@ public class ParallaxFactory {
         tag.xOut = a.getFloat(3, 0f);
         tag.yIn = a.getFloat(4, 0f);
         tag.yOut = a.getFloat(5, 0f);
+        tag.overrideVisibility = a.getBoolean(6, false);
         view.setTag(R.id.parallax_view_tag, tag);
       }
       a.recycle();

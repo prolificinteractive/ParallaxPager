@@ -8,4 +8,5 @@ public class ParallaxViewTag {
   protected float yOut;
   protected float alphaIn;
   protected float alphaOut;
+  protected boolean overrideVisibility;
 }
