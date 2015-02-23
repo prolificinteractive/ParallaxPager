@@ -1,6 +1,14 @@
 Change Log
 ==========
 
+Version 2.2.0 *(2015-02-23)*
+----------------------------
+
+ * New: added `override_visibility` attribute to allow for overriding the default visibility behaviour.
+   When false, it will act as it has; true will not change the visibility of the View at all,
+   leaving it to the implementer.
+
+
 Version 2.1.0 *(2015-02-19)*
 ----------------------------
 
