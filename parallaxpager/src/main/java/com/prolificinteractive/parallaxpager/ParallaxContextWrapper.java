@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 
 public class ParallaxContextWrapper extends ContextWrapper {
 
-  private LayoutInflater inflater;
+  private ParallaxLayoutInflater inflater;
 
   private final ParallaxFactory mFactory;
 
@@ -23,9 +23,11 @@ public class ParallaxContextWrapper extends ContextWrapper {
             LayoutInflater.from(getBaseContext()),
             this,
             mFactory);
+          inflater.setUpLayoutFactories();
       }
       return inflater;
     }
     return super.getSystemService(name);
   }
 }
+
