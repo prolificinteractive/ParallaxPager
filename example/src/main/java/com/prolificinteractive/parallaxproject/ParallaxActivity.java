@@ -2,11 +2,13 @@ package com.prolificinteractive.parallaxproject;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
+
 import com.prolificinteractive.parallaxpager.ParallaxContextWrapper;
+
 import uk.co.chrisjenx.calligraphy.OpenCalligraphyFactory;
 
-public class ParallaxActivity extends ActionBarActivity {
+public class ParallaxActivity extends AppCompatActivity {
 
   @Override protected void attachBaseContext(Context newBase) {
     //ParallaxPager and Calligraphy don't seem to play nicely together
