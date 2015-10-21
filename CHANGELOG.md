@@ -1,6 +1,12 @@
 Change Log
 ==========
 
+Version 2.2.1 *(2015-10-21)*
+----------------------------
+
+ * Fix: Exception caused by support library also supplying a custom LayoutInflater
+
+
 Version 2.2.0 *(2015-02-23)*
 ----------------------------
 

@@ -19,7 +19,7 @@ android {
 
 dependencies {
   compile project(':parallaxpager')
-  //compile 'com.prolificinteractive:parallaxpager:2.2.0'
+  //compile 'com.prolificinteractive:parallaxpager:2.2.1'
   compile 'uk.co.chrisjenx:calligraphy:2.1.0'
   compile 'com.android.support:appcompat-v7:23.0.1'
 }
