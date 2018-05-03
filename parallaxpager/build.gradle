@@ -1,14 +1,16 @@
 apply plugin: 'com.android.library'
 apply plugin: 'maven'
 apply plugin: 'signing'
+apply plugin: 'com.github.dcendents.android-maven'
+group='com.github.prolificinteractive'
 
 android {
-  compileSdkVersion 23
-  buildToolsVersion "23.0.1"
+  compileSdkVersion 27
+  buildToolsVersion "23.0.3"
 
   defaultConfig {
     minSdkVersion 14
-    targetSdkVersion 23
+    targetSdkVersion 27
     versionCode 1
     versionName version
   }
@@ -46,7 +48,7 @@ signing {
 }
 
 dependencies {
-  compile 'com.android.support:support-v4:23.0.1'
+  compile 'com.android.support:support-v4:27.1.1'
 }
 
 uploadArchives {
@@ -54,11 +56,11 @@ uploadArchives {
     beforeDeployment { MavenDeployment deployment -> signing.signPom(deployment) }
 
     repository(url: 'https://oss.sonatype.org/service/local/staging/deploy/maven2/') {
-      authentication(userName: sonatypeUsername, password: sonatypePassword)
+      authentication(userName: 'sonatypeUsername', password: 'sonatypePassword')
     }
 
     snapshotRepository(url: 'https://oss.sonatype.org/content/repositories/snapshots/') {
-      authentication(userName: sonatypeUsername, password: sonatypePassword)
+      authentication(userName: 'sonatypeUsername', password: 'sonatypePassword')
     }
 
     pom {
