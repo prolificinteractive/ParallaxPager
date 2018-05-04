@@ -1,7 +1,11 @@
 Change Log
 ==========
+Version 2.2.2 *(2018-5-3)*
+----------------------------
 
-Version 2.2.1 *(2015-10-21)*
+ * Upgrade: Gradle file
+ * Upgrade: Moved to Jitpack
+ * Updated: ReadMe
 ----------------------------
 
  * Fix: Exception caused by support library also supplying a custom LayoutInflater
