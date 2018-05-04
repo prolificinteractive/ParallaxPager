@@ -1,21 +1,32 @@
-The Parallax Pager
-==================
+# Parallax Pager
+[![Android Arsenal](https://img.shields.io/badge/Android%20Parallax-Pager-blue.svg?style=true)](https://android-arsenal.com/details/1/537) [![Maven Central](https://img.shields.io/maven-central/v/com.prolificinteractive/parallaxpager.svg?maxAge=2592000)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22parallaxpager%22) 
 
-Add some depth to your Android scrolling.
 
-![](http://prolificinteractive.com/blog/wp-content/uploads/2014/04/parallax_planet_demo.gif)
+Add some depth to your Android scrolling using the parallax effect!
 
-Download
-========
+## Installation
 
-Use Gradle to grab the dependency from Maven Central:
+Step 1. Add the JitPack repository to your build file
 
 ```groovy
-compile 'com.prolificinteractive:parallaxpager:2.2.1'
+allprojects {
+  repositories {
+    ...
+    maven { url 'https://jitpack.io' }
+  }
+}
 ```
 
-Usage
-=====
+Step 2. Add the dependency
+
+```groovy
+dependencies {
+  implementation 'com.github.prolificinteractive:parallaxpager:${parallaxpagerVersion}'
+}
+```
+
+## Usage
+
 
 There are 4 important steps:
 
@@ -193,19 +204,21 @@ Parallax views will be `VISIBLE` when onscreen, and `GONE` when offscreen. If yo
 app:override_visibility="true"
 ```
 
-License
-=======
 
->Copyright 2015 Prolific Interactive
->
->Licensed under the Apache License, Version 2.0 (the "License");
->you may not use this file except in compliance with the License.
->You may obtain a copy of the License at
->
->   http://www.apache.org/licenses/LICENSE-2.0
->
->Unless required by applicable law or agreed to in writing, software
->distributed under the License is distributed on an "AS IS" BASIS,
->WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
->See the License for the specific language governing permissions and
->limitations under the License.
+## Contributing
+
+To report a bug or enhancement request, feel free to file an issue under the respective heading. If you wish to contribute to the project, fork this repo and submit a pull request. 
+
+
+Code contributions should follow the standards specified in the [Prolific Android Code Style](https://github.com/prolificinteractive/android-code-styles).
+
+
+## License
+
+![prolific](https://s3.amazonaws.com/prolificsitestaging/logos/Prolific_Logo_Full_Color.png)
+
+Copyright (c) 2018 Prolific Interactive
+
+Parallax Pager is maintained and sponsored by Prolific Interactive. It may be redistributed under the terms specified in the [LICENSE] file.
+
+[LICENSE]: ./LICENSE
