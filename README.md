@@ -1,6 +1,6 @@
 # Parallax Pager
-[![Android Arsenal](https://img.shields.io/badge/Android%20Parallax-Pager-blue.svg?style=true)](https://android-arsenal.com/details/1/537) [![Maven Central](https://img.shields.io/maven-central/v/com.prolificinteractive/parallaxpager.svg?maxAge=2592000)](http://search.maven.org/#search%7Cga%7C1%7Ca%3A%22parallaxpager%22) 
-
+[![Android Arsenal](https://img.shields.io/badge/Android%20Parallax-Pager-blue.svg?style=true)](https://android-arsenal.com/details/1/537) 
+[![Release](https://jitpack.io/v/prolificinteractive/ParallaxPager.svg)
 
 Add some depth to your Android scrolling using the parallax effect!
 
