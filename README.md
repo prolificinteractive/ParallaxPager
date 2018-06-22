@@ -1,7 +1,7 @@
 <img src="/bg_parallax_pager.png"/>
 
 # Parallax Pager
-[![Android Arsenal](https://img.shields.io/badge/Android%20Parallax-Pager-blue.svg?style=true)](https://android-arsenal.com/details/1/537) 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ParallaxPager-blue.svg?style=true)](https://android-arsenal.com/details/1/537) 
 [![](https://jitpack.io/v/prolificinteractive/ParallaxPager.svg)](https://jitpack.io/#prolificinteractive/ParallaxPager)
 
 
