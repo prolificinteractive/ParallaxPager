@@ -1,8 +1,12 @@
 package com.prolificinteractive.parallaxpager;
 
+import android.util.Log;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by chris on 17/12/14.
@@ -22,6 +26,8 @@ class ReflectionUtils {
 
     static Object getValue(Field field, Object obj) {
         try {
+            Log.d(TAG, "getValue: field: "+field.toString());
+            Log.d(TAG, "getValue: obj: "+obj.toString());
             return field.get(obj);
         } catch (IllegalAccessException ignored) {
         }
