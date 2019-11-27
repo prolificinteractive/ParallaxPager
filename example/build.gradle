@@ -2,12 +2,11 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.github.dcendents.android-maven'
 group='com.github.prolificinteractive'
 android {
-  compileSdkVersion 27
-  buildToolsVersion "23.0.3"
+  compileSdkVersion 29
 
   defaultConfig {
     minSdkVersion 16
-    targetSdkVersion 27
+    targetSdkVersion 29
     versionCode 1
     versionName version
   }
@@ -21,5 +20,5 @@ android {
 dependencies {
   implementation project(':parallaxpager')
   implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
-  implementation 'com.android.support:appcompat-v7:27.1.1'
+  implementation 'androidx.appcompat:appcompat:1.0.0'
 }

@@ -3,6 +3,7 @@ package com.prolificinteractive.parallaxpager;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import androidx.core.os.BuildCompat;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,6 +23,8 @@ class ParallaxLayoutInflater extends LayoutInflater {
       "android.widget.",
       "android.webkit."
   };
+
+  private boolean IS_AT_LEAST_Q = Build.VERSION.SDK_INT > Build.VERSION_CODES.P || BuildCompat.isAtLeastP();
 
   private final ParallaxFactory mParallaxFactory;
   // Reflection Hax
@@ -175,21 +178,28 @@ class ParallaxLayoutInflater extends LayoutInflater {
 
     // If CustomViewCreation is off skip this.
     if (view == null && name.indexOf('.') > -1) {
-      if (mConstructorArgs == null) {
-        mConstructorArgs = ReflectionUtils.getField(LayoutInflater.class, "mConstructorArgs");
-      }
+      if (IS_AT_LEAST_Q) {
+        try {
+          view = cloneInContext(context).createView(name, null, attrs);
+        } catch (ClassNotFoundException ignored) {
+        }
+      } else {
+        if (mConstructorArgs == null) {
+          mConstructorArgs = ReflectionUtils.getField(LayoutInflater.class, "mConstructorArgs");
+        }
 
-      final Object[] mConstructorArgsArr =
-          (Object[]) ReflectionUtils.getValue(mConstructorArgs, this);
-      final Object lastContext = mConstructorArgsArr[0];
-      mConstructorArgsArr[0] = parent != null ? parent.getContext() : context;
-      ReflectionUtils.setValue(mConstructorArgs, this, mConstructorArgsArr);
-      try {
-        view = createView(name, null, attrs);
-      } catch (ClassNotFoundException ignored) {
-      } finally {
-        mConstructorArgsArr[0] = lastContext;
+        final Object[] mConstructorArgsArr =
+                (Object[]) ReflectionUtils.getValue(mConstructorArgs, this);
+        final Object lastContext = mConstructorArgsArr[0];
+        mConstructorArgsArr[0] = parent != null ? parent.getContext() : context;
         ReflectionUtils.setValue(mConstructorArgs, this, mConstructorArgsArr);
+        try {
+          view = createView(name, null, attrs);
+        } catch (ClassNotFoundException ignored) {
+        } finally {
+          mConstructorArgsArr[0] = lastContext;
+          ReflectionUtils.setValue(mConstructorArgs, this, mConstructorArgsArr);
+        }
       }
     }
     return view;

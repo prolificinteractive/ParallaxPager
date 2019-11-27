@@ -1,7 +1,9 @@
 package com.prolificinteractive.parallaxpager;
 
 import android.content.Context;
-import android.support.v4.view.ViewPager;
+
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -124,9 +126,9 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
   }
 
   /**
-   * <b>NOTE:</b> this is exposed for use with existing code which requires a {@linkplain android.support.v4.view.ViewPager} instance.
-   * Please make sure that if you call methods like {@linkplain android.support.v4.view.ViewPager#setAdapter(android.support.v4.view.PagerAdapter) setAdapter()}
-   * or {@linkplain android.support.v4.view.ViewPager#setOnPageChangeListener(android.support.v4.view.ViewPager.OnPageChangeListener) setOnPageChangeListener()}
+   * <b>NOTE:</b> this is exposed for use with existing code which requires a {@linkplain ViewPager} instance.
+   * Please make sure that if you call methods like {@linkplain ViewPager#setAdapter(PagerAdapter) setAdapter()}
+   * or {@linkplain ViewPager#setOnPageChangeListener(ViewPager.OnPageChangeListener) setOnPageChangeListener()}
    * on the instance returned, that you do so with forethought and good reason.
    *
    * @return the internal ViewPager, null before {@linkplain #setupChildren(int...) setupChildren()} is called
@@ -137,7 +139,7 @@ public class ParallaxContainer extends FrameLayout implements ViewPager.OnPageCh
 
   /**
    * Set a listener to recieve page change events
-   * @see android.support.v4.view.ViewPager#setOnPageChangeListener(android.support.v4.view.ViewPager.OnPageChangeListener)
+   * @see ViewPager#setOnPageChangeListener(ViewPager.OnPageChangeListener)
    * @param pageChangeListener the listener, or null to clear
    */
   public void setOnPageChangeListener(ViewPager.OnPageChangeListener pageChangeListener) {
